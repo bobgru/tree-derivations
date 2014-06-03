@@ -1,0 +1,82 @@
+name:                tree-derivations
+version:             0.1.0.0
+synopsis:            An exercise in tree drawing
+license:             BSD3
+license-file:        LICENSE
+author:              bobgru
+maintainer:          bobgru@hotmail.com
+build-type:          Simple
+-- extra-source-files:  
+cabal-version:       >=1.10
+
+executable stick-figure-0
+  main-is:             StickFigure0.hs
+  build-depends:       base >=4.6 && <4.7
+                     , containers
+                     , diagrams-lib
+                     , diagrams-svg
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+executable stick-figure-1
+  main-is:             StickFigure1.hs
+  build-depends:       base >=4.6 && <4.7
+                     , containers
+                     , diagrams-lib
+                     , diagrams-svg
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+executable stick-figure-2
+  main-is:             StickFigure2.hs
+  build-depends:       base >=4.6 && <4.7
+                     , containers
+                     , diagrams-lib
+                     , diagrams-svg
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+executable stick-figure-3
+  main-is:             StickFigure3.hs
+  build-depends:       base >=4.6 && <4.7
+                     , containers
+                     , diagrams-lib
+                     , diagrams-svg
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+executable tapered-0
+  main-is:             Tapered0.hs
+  build-depends:       base >=4.6 && <4.7
+                     , containers
+                     , diagrams-lib
+                     , diagrams-svg
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+executable tapered-1
+  main-is:             Tapered1.hs
+  build-depends:       base >=4.6 && <4.7
+                     , containers
+                     , diagrams-lib
+                     , diagrams-svg
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+-- executable l-system-0
+--   main-is:             LSystem0.hs
+--   build-depends:       base >=4.6 && <4.7
+--                      , aeson
+--                      , attoparsec
+--                      , bytestring
+--                      , containers
+--                      , diagrams-lib
+--                      , diagrams-svg
+--                      , scientific
+--                      , syb
+--                      , text
+--                      , unordered-containers
+--                      , vector
+--                      , vector-space
+--   hs-source-dirs:      src
+--   default-language:    Haskell2010
