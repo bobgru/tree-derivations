@@ -183,7 +183,7 @@ type Dgm = Diagram SVG R2
 data TreeConfig = TC {
     tcScale        :: Double,
     tcCutOff       :: Double,
-    tcLineWidth    :: Double,
+    tcInitialWidth :: Double,
     tcBranchScale  :: Double,
     tcBranchAngle  :: Double
 } deriving (Show)
@@ -192,7 +192,7 @@ tc :: TreeConfig
 tc = TC {
     tcScale        = s,
     tcCutOff       = 0.05 * s,
-    tcLineWidth    = 0.01 * s,
+    tcInitialWidth = 0.01 * s,
     tcBranchScale  = 0.6,
     tcBranchAngle  = 1/7
 }
@@ -279,8 +279,8 @@ tcWidthTaper   = 0.7,
 						<p>If minimum width, draw line; otherwise, draw trapezoid.</p>
 						<pre><code data-trim>
 drawBranch n@(_, _, w)
-    | w <= tcLineWidth tc  =  drawUniform n
-    | otherwise            =  drawTapered n
+    | w <= tcInitialWidth tc  =  drawUniform n
+    | otherwise               =  drawTapered n
 
 drawUniform :: TreeNode -> Dgm
 drawUniform (p, v, w) = position [(p, fromOffsets [v])] # lw w
@@ -306,7 +306,7 @@ drawTapered (p, v, w) = place taper p
 						<p>Apply the taper, enforcing a minimum width</p>
 						<pre><code data-trim>
 taperWidth :: Double -> Double
-taperWidth w = max (w * tcWidthTaper tc) (tcLineWidth tc)
+taperWidth w = max (w * tcWidthTaper tc) (tcInitialWidth tc)
 						</code></pre>
 						<pre><code data-trim>
 branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
