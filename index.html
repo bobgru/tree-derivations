@@ -15,7 +15,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<!-- <link rel="stylesheet" href="css/theme/default.css" id="theme"> -->
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -43,15 +44,16 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Tree Derivations</h1>
+					<h2>Tree Derivations</h2>
 					<h4>A tour of Haskell by way of drawing trees</h4>
+					<h5>Bob Grudem</h5>
 					<p>
 						<small><a href="http://github.com/bobgru/tree-derivations">github.com/bobgru/tree-derivations</a></small>
 					</p>
 				</section>
 
 				<section>
-					<h2>The Trees</h2>
+					<h3>The Trees</h3>
 					<p>
 						Starting from a short program to draw a stick figure...
 					</p>
@@ -61,7 +63,7 @@
 				</section>
 
 				<section>
-					<h2>The Trees</h2>
+					<h3>The Trees</h3>
 					<p>
 						...we will add tapered branches...
 					</p>
@@ -71,17 +73,17 @@
 				</section>
 				
 				<section>
-					<h2>The Trees</h2>
+					<h3>The Trees</h3>
 					<p>
 						...and finally draw a tree modeled in 3D
 					</p>
-					<img src="images/deep-3d.svg">
+					<img src="images/deep-3d-2.svg">
 					<aside class="notes">
 					</aside>
 				</section>
 				
 				<section>
-					<h2>Stick Figure—The Code</h2>
+					<h3>Stick Figure—The Code</h3>
 					<pre><code data-trim>
 module Main where
 import Data.Tree(flatten, unfoldTree)
@@ -106,7 +108,7 @@ branches   (p, v)
 				</section>
 
 				<section>
-					<h2>Stick Figure—What of Haskell?</h2>
+					<h3>Stick Figure—What of Haskell?</h3>
 					<ol>
 						<li>The module system, Hackage, the Haskell Platform</li>
 						<li>Function definition and application ($), the IO monad</li>
@@ -121,9 +123,9 @@ branches   (p, v)
 				</section>
 
 				<section>
-					<h2>Stick Figure—What Not</h2>
+					<h3>Stick Figure—What Not</h3>
 					<ol>
-						<li>Data structure</li>
+						<li>Data structures</li>
 						<li>Type declarations</li>
 						<li>Explicit recursion</li>
 						<li>Infinite data structures</li>
@@ -133,7 +135,7 @@ branches   (p, v)
 				</section>
 
 				<section>
-					<h2>Stick Figure—Further Casual Analysis</h2>
+					<h3>Stick Figure—Further<br>Casual Analysis</h3>
 					<ol>
 						<li>Declarative specification</li>
 						<li>Dense code—6 functions, 5 one-liners</li>
@@ -146,7 +148,7 @@ branches   (p, v)
 				
 				<section>
 					<section>
-					<h2>Stick Figure—Preparing for Tapered</h2>
+					<h3>Stick Figure—Preparing for Tapered</h3>
 					<p>Refactor the code (no change to behavior!)</p>
 					<ol>
 						<li>Add module name and type declarations</li>
@@ -157,7 +159,7 @@ branches   (p, v)
 					</section>
 
 					<section>
-						<h2>Stick Figure—Preparing for Tapered</h2>
+						<h3>Stick Figure—Preparing for Tapered</h3>
 						<p>Add module name and type declarations</p>
 						<pre><code data-trim>
 module Main where
@@ -169,10 +171,13 @@ import Diagrams.Prelude
 type TreeNode = (P2, R2)
 type Dgm = Diagram SVG R2
 						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+						</p>
 					</section>
 
 					<section>
-						<h2>Stick Figure—Preparing for Tapered</h2>
+						<h3>Stick Figure—Preparing for Tapered</h3>
 						<p>Extract constants into configuration data structure</p>
 						<pre><code data-trim>
 data TreeConfig = TC {
@@ -193,10 +198,13 @@ tc = TC {
 }
     where s = 10000
 						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+						</p>
 					</section>
 
 					<section>
-						<h2>Stick Figure—Preparing for Tapered</h2>
+						<h3>Stick Figure—Preparing for Tapered</h3>
 						<p>Extract calculation of branch tips into new function</p>
 						<pre><code data-trim>
 branches :: TreeNode -> (TreeNode, [TreeNode])
@@ -210,10 +218,13 @@ branchTips (p, v) = [(p', br a), (p', br (-a))]
           br a = v # scale (tcBranchScale tc) # rotateBy a
           a    = tcBranchAngle tc
 						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+						</p>
 					</section>
 
 					<section>
-						<h2>Stick Figure—Preparing for Tapered</h2>
+						<h3>Stick Figure—Preparing for Tapered</h3>
 						<p>Add explicit width</p>
 						<pre><code data-trim>
 type TreeNode = (P2, R2, Double)
@@ -233,12 +244,23 @@ branches n@(_, v, _)
 branchTips (p, v, w) = [(p', br a, w), (p', br (-a), w)]
 	...
 						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+						</p>
 					</section>
 				</section>
 
 				<section>
 					<section>
-						<h2>Tapered Branches—The Code</h2>
+						<h3>Tapered Branches—The Code</h3>
+						<ol>
+							<li>Increase the initial width and add taper</li>
+							<li>If minimum width, draw line; otherwise, draw trapezoid.</li>
+							<li>Apply the taper, enforcing a minimum width</li>
+						</ol>
+					</section>
+					<section>
+						<h3>Tapered Branches—The Code</h3>
 						<p>Increase the initial width and add taper</p>
 						<pre><code data-trim>
 tcWidthTaper   :: Double,
@@ -247,13 +269,14 @@ tcWidthTaper   :: Double,
 tcInitialWidth = 0.1  * s,
 tcWidthTaper   = 0.7,
 						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
+						</p>
 					</section>
 				
 					<section>
-						<h2>Tapered Branches—The Code</h2>
-						<p>If minimum width, draw line;
-							otherwise, draw trapezoid.</p>
-						</ul>
+						<h3>Tapered Branches—The Code</h3>
+						<p>If minimum width, draw line; otherwise, draw trapezoid.</p>
 						<pre><code data-trim>
 drawBranch n@(_, _, w)
     | w <= tcLineWidth tc  =  drawUniform n
@@ -273,10 +296,13 @@ drawTapered (p, v, w) = place taper p
           a     = p  .-^ (w2  *^ n) ; b   = p' .-^ (w2' *^ n)
           c     = p' .+^ (w2' *^ n) ; d   = p  .+^ (w2  *^ n)
 						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
+						</p>
 					</section>
 
 					<section>
-						<h2>Tapered Branches—The Code</h2>
+						<h3>Tapered Branches—The Code</h3>
 						<p>Apply the taper, enforcing a minimum width</p>
 						<pre><code data-trim>
 taperWidth :: Double -> Double
@@ -287,117 +313,190 @@ branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
           ...
           w'   = taperWidth w
 						</code></pre>
-					</section>
-				</section>
-
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Stick Figures</h2>
 						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
 						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
 					</section>
+				</section>
+
+				<section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
+						<h3>Tapered Branches—Preparing for 3D</h3>
+						<p>Refactor the code (no change to behavior!)</p>
+						<ol>
+							<li>Import 3D libraries</li>
+							<li>Change seed to unitZ from unitY</li>
+							<li>Add functions to project point and branch node</li>
+							<li>Apply rotation in 3D instead of 2D</li>
+							<li>Update comments to reflect new types</li>
+						</ol>
 					</section>
+					
 					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
+						<h3>Tapered Branches—Preparing for 3D</h3>
+						<p>Import 3D libraries and change seed to unitZ</p>
+						<pre><code data-trim>
+import Diagrams.ThreeD.Transform(aboutY)
+import Diagrams.ThreeD.Types(unp3)
+import Diagrams.ThreeD.Vector(unitZ)
+						</code></pre>
+						<pre><code data-trim>
+seed = (origin, unitZ ^* tcScale tc, tcInitialWidth tc)
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+						</p>
 					</section>
+
 					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
+						<h3>Tapered Branches—Preparing for 3D</h3>
+						<p>Add functions to project point and branch node</p>
+						<pre><code data-trim>
+renderTree = mconcat . flatten . fmap drawBranch . fmap projectNode
+						</code></pre>
+						<pre><code data-trim>
+--projectNode :: TreeNode3 -> TreeNode
+projectNode (p, v, w) = (p', v', w)
+    where q  = p .+^ v
+          q' = projectPtXZ q
+          p' = projectPtXZ p
+          v' = q' .-. p'
+
+--projectPtXZ :: P3 -> P2
+projectPtXZ p = case unp3 p of (x, _, z) -> p2 (x, z)
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Tapered Branches—Preparing for 3D</h3>
+						<p>Apply rotation in 3D instead of 2D</p>
+						<pre><code data-trim>
+br a = v # scale (tcBranchScale tc) # t a
+...
+t a  = transform (aboutY (a @@ turn))
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Tapered Branches—Preparing for 3D</h3>
+						<p>Update comments to reflect new types</p>
+						<pre><code data-trim>
+--type TreeNode3 = (P3, R3, Double)
+--renderTree :: Tree TreeNode3 -> Dgm
+--buildTree  :: Tree TreeNode3
+--seed       :: TreeNode3
+--branches   :: TreeNode3 -> (TreeNode3, [TreeNode3])
+--branchTips :: TreeNode3 -> [TreeNode3]
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+						</p>
 					</section>
 				</section>
 
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
+					<section>
+						<h3>Deep 3D—The Code</h3>
+						<ol>
+							<li>Import needed library functions</li>
+							<li>Tune cut off length</li>
+							<li>Rewrite branchTips</li>
+							<li>Add inject and mkTip functions</li>
+							<li>Add pointAt'' function</li>
+						</ol>
+					</section>
+
+					<section>
+						<h3>Deep 3D—The Code</h3>
+						<p>Import needed library functions and tune cut off</p>
+						<pre><code data-trim>
+import Data.Cross(cross3)
+...
+import Diagrams.Prelude hiding (rotationAbout, direction, angleBetween)
+import Diagrams.ThreeD.Transform(aboutY, pointAt', rotationAbout)
+import Diagrams.ThreeD.Types(unp3, R3, r3, T3, Spherical)
+import Diagrams.ThreeD.Vector(unitZ, direction, angleBetween)
+						</code></pre>
+						<pre><code data-trim>
+tcCutOff       = 0.12 * s,
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Deep 3D—The Code</h3>
+						<p>Rewrite branchTips</p>
+						<pre><code data-trim>
+-- Build a regular polygon in the XY-plane and tilt it perpendicular
+-- to the vector it branches from. Orient the polygon to make the
+-- projection more interesting.
+--branchTips :: TreeNode3 -> [TreeNode3]
+branchTips n@(_, v, _) = polygon po
+                       # map (.-. origin)
+                       # map inject
+                       # map (^+^ (unitZ ^* h))
+                       # map (transform (pointAt'' unitZ unitZ v))
+                       # map (^*  (magnitude v * tcBranchScale tc))
+                       # map (mkTip n)
+    where po = PolygonOpts (PolyRegular c s) (OrientTo v') origin
+          c  = 3            -- number of sides
+          s  = 0.782        -- length of side
+          v' = r2 (1,3)     -- orientation vector
+          h  = 0.623        -- "height" of tips above base
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Deep 3D—The Code</h3>
+						<p>Add inject and mkTip functions</p>
+						<pre><code data-trim>
+--inject :: R2 -> R3
+inject v = case unr2 v of (x, y) -> r3 (x, y, 0)
+						</code></pre>
+						<pre><code data-trim>
+--mkTip :: TreeNode3 -> R3 -> TreeNode3
+mkTip (p, v, w) v' = (p .+^ v, v', taperWidth w)
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Deep 3D—The Code</h3>
+						<p>Add pointAt'' function</p>
+						<pre><code data-trim>
+-- Copied from http://projects.haskell.org/diagrams/haddock/src/
+-- Diagrams-ThreeD-Transform.html#pointAt
+-- and modified to change the calculation of tilt angle.
+-- Also eliminating panning, which is done for us automatically
+-- by virtue of the relative vector spaces of composed subdiagrams.
+-- There is already a function called pointAt'.
+--pointAt'' :: R3 -> R3 -> R3 -> T3
+pointAt'' about initial final = tilt
+    where
+        tiltAngle = angleBetween initial final
+        tiltDir   = direction $ cross3 about final :: Spherical
+        tilt      = rotationAbout origin tiltDir tiltAngle
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+						</p>
+					</section>
 				</section>
 
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section id="themes">
+				<!-- <section id="themes">
 					<h2>Themes</h2>
 					<p>
 						Reveal.js comes with a few themes built in: <br>
@@ -415,174 +514,16 @@ branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
 							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
 						</small>
 					</p>
-				</section>
+				</section> -->
 
 				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<section data-background="#007777">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Repeated Image Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-				</section>
-
-				<section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-					<h2>Background Transitions</h2>
-					<p>
-						Pass reveal.js the <code>backgroundTransition: 'slide'</code> config argument to make backgrounds slide rather than fade.
-					</p>
-				</section>
-
-				<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
-					<h2>Background Transition Override</h2>
-					<p>
-						You can override background transitions per slide by using <code>data-background-transition="slide"</code>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-current-blue">highlight-current-blue</p>
-					</section>
-				</section>
-
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
-
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
+					<h2>THE END</h2>
+					<img src="images/stick-figure.svg" width=300>
+					<img src="images/tapered.svg" width=300>
+					<img src="images/deep-3d-2.svg" width=268>
 				</section>
 
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
