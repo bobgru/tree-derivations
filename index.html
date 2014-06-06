@@ -496,6 +496,57 @@ pointAt'' about initial final = tilt
 					</section>
 				</section>
 
+				<section>
+					<section>
+						<h3>A Note on Type Inference</h3>
+						<p>According to my hint (Tapered0.hs)</p>
+						<pre><code data-trim>
+--branchTips :: TreeNode -> [TreeNode]
+						</code></pre>
+						<p>According to my hint (Deep3D.hs)</p>
+						<pre><code data-trim>
+--branchTips :: TreeNode3 -> [TreeNode3]
+						</code></pre>
+					</section>
+
+					<section>
+						<h3>A Note on Type Inference</h3>
+						<p>According to GHCI (cabal repl tapered-0)</p>
+						<pre><code data-trim>
+tree-derivations$ cabal repl tapered-0
+...
+Ok, modules loaded: Main.
+λ: :t branchTips 
+branchTips
+  :: (vector-space-0.8.6:Data.AffineSpace.AffineSpace t,
+      diagrams-core-1.1.0.3:Diagrams.Core.Transform.Transformable
+        (vector-space-0.8.6:Data.AffineSpace.Diff t),
+      diagrams-core-1.1.0.3:Diagrams.Core.V.V
+        (vector-space-0.8.6:Data.AffineSpace.Diff t)
+      ~ Diagrams.TwoD.Types.R2) =>
+     (t, vector-space-0.8.6:Data.AffineSpace.Diff t, Double)
+     -> [(t, vector-space-0.8.6:Data.AffineSpace.Diff t, Double)]
+						</code></pre>
+					</section>
+
+					<section>
+						<h3>A Note on Type Inference</h3>
+						<p>According to GHCI (cabal repl deep-3d)</p>
+						<pre><code data-trim>
+tree-derivations$ cabal repl deep-3d
+...
+Ok, modules loaded: Main.
+λ: :t branchTips 
+branchTips
+  :: (Data.AffineSpace.AffineSpace t,
+      Data.AffineSpace.Diff t ~ Diagrams.ThreeD.Types.R3) =>
+     (t, Diagrams.ThreeD.Types.R3, Double)
+     -> [(t, Diagrams.ThreeD.Types.R3, Double)]
+						</code></pre>
+
+					</section>
+				</section>
+
 				<!-- <section id="themes">
 					<h2>Themes</h2>
 					<p>
