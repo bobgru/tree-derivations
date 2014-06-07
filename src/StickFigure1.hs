@@ -8,7 +8,7 @@ type TreeNode = (P2, R2)
 type Dgm = Diagram SVG R2
 
 main :: IO ()
-main = defaultMain $ pad 1.1 $ renderTree $ buildTree
+main = defaultMain $ pad 1.1 $ renderTree buildTree
 
 renderTree :: Tree TreeNode -> Dgm
 renderTree = mconcat . flatten . fmap drawBranch

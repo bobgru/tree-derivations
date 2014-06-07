@@ -34,7 +34,7 @@ tc = TC {
     where s = 10000
 
 --main :: IO ()
-main = defaultMain $ pad 1.1 $ renderTree $ buildTree
+main = defaultMain $ pad 1.1 $ renderTree buildTree
 
 --renderTree :: Tree TreeNode3 -> Dgm
 renderTree = mconcat . flatten . fmap drawBranch . fmap projectNode

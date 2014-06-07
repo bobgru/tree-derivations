@@ -2,7 +2,7 @@ import Data.Tree(flatten, unfoldTree)
 import Diagrams.Backend.SVG.CmdLine(defaultMain)
 import Diagrams.Prelude
 
-main       = defaultMain $ pad 1.1 $ renderTree $ buildTree
+main       = defaultMain $ pad 1.1 $ renderTree buildTree
 renderTree = mconcat . flatten . fmap drawBranch
 buildTree  = unfoldTree branches seed
 seed       = (origin, unitY)
