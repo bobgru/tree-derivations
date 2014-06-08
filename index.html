@@ -249,7 +249,7 @@ tcInitialWidth = 0.01 * s,
 						</code></pre>
 						<pre><code data-trim>
 seed = (origin, unitY ^* tcScale tc, tcInitialWidth tc)
-drawBranch (p, v) = place (fromOffsets [v]) p # lw w
+drawBranch (p, v, w) = place (fromOffsets [v]) p # lw w
 	...
 branches n@(_, v, _)
 	...
