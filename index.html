@@ -85,7 +85,6 @@
 				<section>
 					<h3>Stick Figure—The Code</h3>
 					<pre><code data-trim>
-module Main where
 import Data.Tree(flatten, unfoldTree)
 import Diagrams.Backend.SVG.CmdLine(defaultMain)
 import Diagrams.Prelude
@@ -94,7 +93,7 @@ main       = defaultMain $ pad 1.1 $ renderTree buildTree
 renderTree = mconcat . flatten . fmap drawBranch
 buildTree  = unfoldTree branches seed
 seed       = (origin, unitY)
-drawBranch (p, v) = position [(p, fromOffsets [v])]
+drawBranch (p, v) = place (fromOffsets [v]) p
 branches   (p, v)
     | magnitude v < 0.05  =  ((p, v), [])
     | otherwise           =  ((p, v), pvs)
@@ -249,7 +248,7 @@ tcInitialWidth = 0.01 * s,
 						</code></pre>
 						<pre><code data-trim>
 seed = (origin, unitY ^* tcScale tc, tcInitialWidth tc)
-drawBranch (p, v, w) = position [(p, fromOffsets [v])] # lw w
+drawBranch (p, v) = place (fromOffsets [v]) p # lw w
 	...
 branches n@(_, v, _)
 	...

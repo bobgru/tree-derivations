@@ -6,7 +6,7 @@ main       = defaultMain $ pad 1.1 $ renderTree buildTree
 renderTree = mconcat . flatten . fmap drawBranch
 buildTree  = unfoldTree branches seed
 seed       = (origin, unitY)
-drawBranch (p, v) = position [(p, fromOffsets [v])]
+drawBranch (p, v) = place (fromOffsets [v]) p
 branches   (p, v)
     | magnitude v < 0.05  =  ((p, v), [])
     | otherwise           =  ((p, v), pvs)

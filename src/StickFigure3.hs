@@ -40,7 +40,7 @@ buildTree = unfoldTree branches seed
 seed = (origin, unitY ^* tcScale tc, tcInitialWidth tc)
 
 --drawBranch :: TreeNode -> Dgm
-drawBranch (p, v, w) = position [(p, fromOffsets [v])] # lw w
+drawBranch (p, v, w) = place (fromOffsets [v]) p # lw w
 
 --branches :: TreeNode -> (TreeNode, [TreeNode])
 branches n@(_, v, _)

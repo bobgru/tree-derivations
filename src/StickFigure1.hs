@@ -20,7 +20,7 @@ seed :: TreeNode
 seed = (origin, unitY)
 
 drawBranch :: TreeNode -> Dgm
-drawBranch (p, v) = position [(p, fromOffsets [v])]
+drawBranch (p, v) = place (fromOffsets [v]) p
 
 branches :: TreeNode -> (TreeNode, [TreeNode])
 branches   (p, v)
