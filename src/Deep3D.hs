@@ -60,23 +60,22 @@ projectPtXZ p = case unp3 p of (x, _, z) -> p2 (x, z)
 inject v = case unr2 v of (x, y) -> r3 (x, y, 0)
 
 --drawBranch :: TreeNode -> Dgm
-drawBranch n@(_, _, w)
-    | w <= tcMinWidth tc  =  drawUniform n
-    | otherwise           =  drawTapered n
+drawBranch n@(p, v, w) = place d p
+    where d | w <= tcMinWidth tc  =  lineSegment v w
+            | otherwise           =  trapezoid n
 
---drawUniform :: TreeNode -> Dgm
-drawUniform (p, v, w) = position [(p, fromOffsets [v])] # lw w
+--lineSegment :: R2 -> Double -> Dgm
+lineSegment v w     = fromOffsets [v] # lw w
 
---drawTapered :: TreeNode -> Dgm
-drawTapered (p, v, w) = place taper p
-    where taper = (closeLine . lineFromVertices) [ p, a, b, c, d ]
-                # strokeLoop # fc black # lw 0.01
-          p'  = p .+^ v
-          w'  = taperWidth w
-          n   = v # rotateBy (1/4) # normalized
-          w2  = w  / 2 ; w2' = w' / 2
-          a   = p  .-^ (w2  *^ n) ; b   = p' .-^ (w2' *^ n)
-          c   = p' .+^ (w2' *^ n) ; d   = p  .+^ (w2  *^ n)
+--trapezoid :: TreeNode -> Dgm
+trapezoid (p, v, w) = (closeLine . lineFromVertices) [ p, a, b, c, d ]
+                    # strokeLoop # fc black # lw 0.01
+    where p' = p .+^ v
+          w' = taperWidth w
+          n  = v # rotateBy (1/4) # normalized
+          w2 = w  / 2 ; w2' = w' / 2
+          a  = p  .-^ (w2  *^ n) ; b = p' .-^ (w2' *^ n)
+          c  = p' .+^ (w2' *^ n) ; d = p  .+^ (w2  *^ n)
 
 --taperWidth :: Double -> Double
 taperWidth w = max (w * tcWidthTaper tc) (tcMinWidth tc)

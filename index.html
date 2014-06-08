@@ -290,19 +290,18 @@ tcWidthTaper   = 0.7,
 						<h3>Tapered Branches—The Code</h3>
 						<p>If minimum width, draw line; otherwise, draw trapezoid.</p>
 						<pre><code data-trim>
-drawBranch n@(_, _, w)
-    | w <= tcMinWidth tc  =  drawUniform n
-    | otherwise           =  drawTapered n
-drawUniform (p, v, w) = position [(p, fromOffsets [v])] # lw w
-drawTapered (p, v, w) = place trapezoid p
-    where trapezoid = (closeLine . lineFromVertices) [ p, a, b, c, d ]
+drawBranch n@(p, v, w) = place d p
+    where d | w <= tcMinWidth tc  =  lineSegment v w
+            | otherwise           =  trapezoid n
+lineSegment v w     = fromOffsets [v] # lw w
+trapezoid (p, v, w) = (closeLine . lineFromVertices) [ p, a, b, c, d ]
                     # strokeLoop # fc black # lw 0.01
-          p'  = p .+^ v
-          w'  = taperWidth w
-          n   = v # rotateBy (1/4) # normalized
-          w2  = w  / 2 ; w2' = w' / 2
-          a   = p  .-^ (w2  *^ n) ; b   = p' .-^ (w2' *^ n)
-          c   = p' .+^ (w2' *^ n) ; d   = p  .+^ (w2  *^ n)
+    where p' = p .+^ v
+          w' = taperWidth w
+          n  = v # rotateBy (1/4) # normalized
+          w2 = w  / 2 ; w2' = w' / 2
+          a  = p  .-^ (w2  *^ n) ; b = p' .-^ (w2' *^ n)
+          c  = p' .+^ (w2' *^ n) ; d = p  .+^ (w2  *^ n)
 						</code></pre>
 						<p>
 							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
