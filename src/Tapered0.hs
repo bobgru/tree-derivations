@@ -10,7 +10,7 @@ import Diagrams.Prelude
 data TreeConfig = TC {
     tcScale        :: Double,
     tcCutOff       :: Double,
-    tcMinLineWidth :: Double,
+    tcMinWidth     :: Double,
     tcInitialWidth :: Double,
     tcWidthTaper   :: Double,
     tcBranchScale  :: Double,
@@ -21,7 +21,7 @@ data TreeConfig = TC {
 tc = TC {
     tcScale        = s,
     tcCutOff       = 0.05 * s,
-    tcMinLineWidth = 0.01 * s,
+    tcMinWidth     = 0.01 * s,
     tcInitialWidth = 0.1  * s,
     tcWidthTaper   = 0.7,
     tcBranchScale  = 0.6,
@@ -43,8 +43,8 @@ seed = (origin, unitY ^* tcScale tc, tcInitialWidth tc)
 
 --drawBranch :: TreeNode -> Dgm
 drawBranch n@(_, _, w)
-    | w <= tcMinLineWidth tc  =  drawUniform n
-    | otherwise               =  drawTapered n
+    | w <= tcMinWidth tc  =  drawUniform n
+    | otherwise           =  drawTapered n
 
 --drawUniform :: TreeNode -> Dgm
 drawUniform (p, v, w) = position [(p, fromOffsets [v])] # lw w
@@ -61,7 +61,7 @@ drawTapered (p, v, w) = place taper p
           c     = p' .+^ (w2' *^ n) ; d = p  .+^ (w2  *^ n)
 
 --taperWidth :: Double -> Double
-taperWidth w = max (w * tcWidthTaper tc) (tcMinLineWidth tc)
+taperWidth w = max (w * tcWidthTaper tc) (tcMinWidth tc)
 
 --branches :: TreeNode -> (TreeNode, [TreeNode])
 branches n@(_, v, _)

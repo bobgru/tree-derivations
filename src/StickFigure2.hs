@@ -10,6 +10,7 @@ import Diagrams.Prelude
 data TreeConfig = TC {
     tcScale        :: Double,
     tcCutOff       :: Double,
+    tcMinWidth     :: Double,
     tcInitialWidth :: Double,
     tcBranchScale  :: Double,
     tcBranchAngle  :: Double
@@ -19,6 +20,7 @@ data TreeConfig = TC {
 tc = TC {
     tcScale        = s,
     tcCutOff       = 0.05 * s,
+    tcMinWidth     = 0.01 * s,
     tcInitialWidth = 0.01 * s,
     tcBranchScale  = 0.6,
     tcBranchAngle  = 1/7

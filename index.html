@@ -179,20 +179,31 @@ type Dgm = Diagram SVG R2
 
 					<section>
 						<h3>Stick Figure—Preparing for Tapered</h3>
-						<p>Extract constants into configuration data structure</p>
+						<p>Define configuration data structure</p>
 						<pre><code data-trim>
 data TreeConfig = TC {
     tcScale        :: Double,
     tcCutOff       :: Double,
+    tcMinWidth     :: Double,
     tcInitialWidth :: Double,
     tcBranchScale  :: Double,
     tcBranchAngle  :: Double
 } deriving (Show)
+						</code></pre>
+						<p>
+							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+						</p>
+					</section>
 
+					<section>
+						<h3>Stick Figure—Preparing for Tapered</h3>
+						<p>Extract constants into configuration data structure</p>
+						<pre><code data-trim>
 tc :: TreeConfig
 tc = TC {
     tcScale        = s,
     tcCutOff       = 0.05 * s,
+    tcMinWidth     = 0.01 * s,
     tcInitialWidth = 0.01 * s,
     tcBranchScale  = 0.6,
     tcBranchAngle  = 1/7
@@ -280,22 +291,18 @@ tcWidthTaper   = 0.7,
 						<p>If minimum width, draw line; otherwise, draw trapezoid.</p>
 						<pre><code data-trim>
 drawBranch n@(_, _, w)
-    | w <= tcInitialWidth tc  =  drawUniform n
-    | otherwise               =  drawTapered n
-
-drawUniform :: TreeNode -> Dgm
+    | w <= tcMinWidth tc  =  drawUniform n
+    | otherwise           =  drawTapered n
 drawUniform (p, v, w) = position [(p, fromOffsets [v])] # lw w
-
-drawTapered :: TreeNode -> Dgm
-drawTapered (p, v, w) = place taper p
-    where taper = (closeLine . lineFromVertices) [ p, a, b, c, d ]
-                # strokeLoop # fc black # lw 0.01
-          p'    = p .+^ v
-          w'    = taperWidth w
-          n     = v # rotateBy (1/4) # normalized
-          w2    = w  / 2 ; w2' = w' / 2
-          a     = p  .-^ (w2  *^ n) ; b   = p' .-^ (w2' *^ n)
-          c     = p' .+^ (w2' *^ n) ; d   = p  .+^ (w2  *^ n)
+drawTapered (p, v, w) = place trapezoid p
+    where trapezoid = (closeLine . lineFromVertices) [ p, a, b, c, d ]
+                    # strokeLoop # fc black # lw 0.01
+          p'  = p .+^ v
+          w'  = taperWidth w
+          n   = v # rotateBy (1/4) # normalized
+          w2  = w  / 2 ; w2' = w' / 2
+          a   = p  .-^ (w2  *^ n) ; b   = p' .-^ (w2' *^ n)
+          c   = p' .+^ (w2' *^ n) ; d   = p  .+^ (w2  *^ n)
 						</code></pre>
 						<p>
 							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
@@ -307,7 +314,7 @@ drawTapered (p, v, w) = place taper p
 						<p>Apply the taper, enforcing a minimum width</p>
 						<pre><code data-trim>
 taperWidth :: Double -> Double
-taperWidth w = max (w * tcWidthTaper tc) (tcInitialWidth tc)
+taperWidth w = max (w * tcWidthTaper tc) (tcMinWidth tc)
 						</code></pre>
 						<pre><code data-trim>
 branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
