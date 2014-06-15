@@ -13,8 +13,8 @@ executable stick-figure-0
   main-is:             StickFigure0.hs
   build-depends:       base >=4.6 && <4.7
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
   hs-source-dirs:      src
   default-language:    Haskell2010
 
@@ -22,8 +22,8 @@ executable stick-figure-1
   main-is:             StickFigure1.hs
   build-depends:       base >=4.6 && <4.7
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
   hs-source-dirs:      src
   default-language:    Haskell2010
 
@@ -31,8 +31,8 @@ executable stick-figure-2
   main-is:             StickFigure2.hs
   build-depends:       base >=4.6 && <4.7
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
   hs-source-dirs:      src
   default-language:    Haskell2010
 
@@ -40,8 +40,8 @@ executable stick-figure-3
   main-is:             StickFigure3.hs
   build-depends:       base >=4.6 && <4.7
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
   hs-source-dirs:      src
   default-language:    Haskell2010
 
@@ -49,8 +49,8 @@ executable tapered-0
   main-is:             Tapered0.hs
   build-depends:       base >=4.6 && <4.7
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
   hs-source-dirs:      src
   default-language:    Haskell2010
 
@@ -67,8 +67,8 @@ executable deep-3d
   main-is:             Deep3D.hs
   build-depends:       base >=4.6 && <4.7
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
                      , vector-space
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -80,8 +80,8 @@ executable l-system-0
                      , attoparsec
                      , bytestring
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
                      , scientific
                      , syb
                      , text
@@ -98,8 +98,8 @@ executable l-system-1
                      , attoparsec
                      , bytestring
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
                      , scientific
                      , syb
                      , text
@@ -116,8 +116,8 @@ executable l-system-2
                      , attoparsec
                      , bytestring
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
                      , scientific
                      , syb
                      , text
@@ -134,8 +134,8 @@ executable l-system-3
                      , attoparsec
                      , bytestring
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
                      , scientific
                      , syb
                      , text
@@ -152,8 +152,8 @@ executable l-system-4
                      , attoparsec
                      , bytestring
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
                      , scientific
                      , syb
                      , text
@@ -170,13 +170,21 @@ executable l-system-5
                      , attoparsec
                      , bytestring
                      , containers
-                     , diagrams-lib
-                     , diagrams-svg
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
                      , scientific
                      , syb
                      , text
                      , unordered-containers
                      , vector
                      , vector-space
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+executable tree-node-diagram
+  main-is:             TreeNodeDiagram.hs
+  build-depends:       base >=4.6 && <4.7
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
   hs-source-dirs:      src
   default-language:    Haskell2010
