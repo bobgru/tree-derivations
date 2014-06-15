@@ -81,19 +81,18 @@
 				</section>
 				
 				<section>
-					<h3>Stick Figure—Motivations</h3>
+					<h3>Motivations</h3>
 					<ul>
 						<li>Use <strong>diagrams</strong> package</li>
-						<li>Create SVG image</li>
 						<li>Use standard containers</li>
 						<li>Use standard functions</li>
-						<li>Think in Haskell</li>
 						<li>Keep it simple and flexible</li>
+						<li>Present at Boston Haskell!</li>
 					</ul>
 				</section>
 
 				<section>
-					<h3>Stick Figure—Requirements</h3>
+					<h3>Requirements</h3>
 					<ul><li>From <strong>diagrams</strong>
 							<ul>
 								<li>Apply <i>defaultMain</i> to a diagram</li>
@@ -112,12 +111,11 @@
 				
 				<section>
 					<section>
-						<h3>Stick Figure—Design</h3>
-						<h4>Data type transformations</h4>
+						<h3>Design—Data Transformations</h3>
 						<ol>
 							<li><i>TreeNode</i> -- TBD</li>
 							<li><i>Tree TreeNode</i></li>
-							<li><i>[TreeNode]</i></li>
+							<li><i>Tree (Diagram SVG R2)</i></li>
 							<li><i>[Diagram SVG R2]</i></li>
 							<li><i>Diagram SVG R2</i></li>
 							<li>SVG file</li>
@@ -125,9 +123,7 @@
 					</section>
 
 					<section>
-						<h3>Stick Figure—Design</h3>
-						<h4>Functions to effect data transformations</h4>
-						<br/>
+						<h3>Design—Functions</h3>
 						<table style="font-size: 90%">
 							<tbody>
 								<tr>
@@ -171,11 +167,9 @@
 							</tbody>
 						</table>
 					</section>
-				</section>
-				
-				<section>
+
 					<section>
-						<h3>Stick Figure—Branching Parameters</h3>
+						<h3>Design—Branching Parameters</h3>
 						<table>
 							<tr>
 								<td><img src="images/tree-node.svg"></td>
@@ -198,7 +192,7 @@
 					</section>
 
 					<section>
-						<h3>Stick Figure—Branching Parameters</h3>
+						<h3>Design—<i>TreeNode</i></h3>
 						<p style="text-align: left">
 							For our tree, <i style="font-family: serif">&#x3B8;</i> and <i>R</i> are fixed, which leaves
 							<i>TreeNode</i> = (<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>).<br/>
@@ -235,48 +229,50 @@ branches   (p, v)
 				</section>
 
 				<section>
-					<h3>Stick Figure—What of Haskell?</h3>
-					<ul>
-						<li>The module system, Hackage, the Haskell Platform</li>
-						<li>Function definition, nested functions</li>
-						<li>Function application in 3 ways: f x, f $ x, x # f</li>
-						<li>Point-free composition, higher-order functions, functors</li>
-						<li>Partial application, currying</li>
-						<li>Tuples, lists, pattern matching</li>
-						<li>Guards, the where clause, apostrophe in names</li>
-						<li>Custom operators—(.+^) from Data.AffineSpace</li>
-						<li>Type inference, type classes and instances</li>
-						<li>The IO monad, lazy evaluation</li>
-					</ul>
-				</section>
+					<section>
+						<h3>Analysis—What of Haskell?</h3>
+						<ul>
+							<li>The module system, Hackage, the Haskell Platform</li>
+							<li>Function definition, nested functions</li>
+							<li>Function application in 3 ways: <i>f x</i>, <i>f $ x</i>, <i>x # f</i></li>
+							<li>Point-free composition, higher-order functions, functors</li>
+							<li>Partial application, currying</li>
+							<li>Tuples, lists, pattern matching</li>
+							<li>Guards, the where clause, apostrophe in names</li>
+							<li>Custom operators—(<i>.+^</i>) from Data.AffineSpace</li>
+							<li>Type inference, type classes and instances</li>
+							<li>The <i>IO</i> monad, lazy evaluation</li>
+						</ul>
+					</section>
 
-				<section>
-					<h3>Stick Figure—What Not?</h3>
-					<ul>
-						<li>Data structures</li>
-						<li>Type declarations</li>
-						<li>Explicit recursion</li>
-						<li>Infinite data structures</li>
-						<li>Sequence, loops, and conditionals (!)</li>
-						<li>Comments and whitespace (not much)</li>
-					</ul>
-				</section>
+					<section>
+						<h3>Analysis—What Not?</h3>
+						<ul>
+							<li>Explicit data structures</li>
+							<li>Explicit type declarations</li>
+							<li>Explicit recursion</li>
+							<li>Infinite data structures</li>
+							<li>Sequence, loops, and conditionals (!)</li>
+							<li>Comments and whitespace (not much)</li>
+						</ul>
+					</section>
 
-				<section>
-					<h3>Stick Figure—Further<br>Casual Analysis</h3>
-					<ul>
-						<li>Declarative specification</li>
-						<li>Dense code—6 functions, 5 one-liners</li>
-						<li>Almost-infinite tree (?)</li>
-						<li>Control flow structures as code</li>
-						<li>Layout mostly to suit taste</li>
-						<li>Type inference as convenience</li>
-					</ul>
+					<section>
+						<h3>Analysis—Further Comments</h3>
+						<ul>
+							<li>Declarative specification</li>
+							<li>Dense code—6 functions, 5 one-liners</li>
+							<li>Almost-infinite tree (?)</li>
+							<li>Control flow structures as code</li>
+							<li>Layout mostly to suit taste</li>
+							<li>Type inference as convenience</li>
+						</ul>
+					</section>
 				</section>
 				
 				<section>
 					<section>
-					<h3>Stick Figure—Preparing for Tapered</h3>
+					<h3>Preparing for Tapered—Overview</h3>
 					<p>Refactor the code (no change to behavior!)</p>
 					<ol>
 						<li>Add module name and type declarations</li>
@@ -288,7 +284,7 @@ branches   (p, v)
 					</section>
 
 					<section>
-						<h3>Stick Figure—Preparing for Tapered</h3>
+						<h3>Preparing for Tapered</h3>
 						<p>Add module name and type declarations</p>
 						<pre><code data-trim>
 module Main where
@@ -306,7 +302,7 @@ type Dgm = Diagram SVG R2
 					</section>
 
 					<section>
-						<h3>Stick Figure—Preparing for Tapered</h3>
+						<h3>Preparing for Tapered</h3>
 						<p>Define configuration data structure</p>
 						<pre><code data-trim>
 data TreeConfig = TC {
@@ -324,7 +320,7 @@ data TreeConfig = TC {
 					</section>
 
 					<section>
-						<h3>Stick Figure—Preparing for Tapered</h3>
+						<h3>Preparing for Tapered</h3>
 						<p>Extract constants into configuration data structure</p>
 						<pre><code data-trim>
 tc :: TreeConfig
@@ -344,7 +340,7 @@ tc = TC {
 					</section>
 
 					<section>
-						<h3>Stick Figure—Preparing for Tapered</h3>
+						<h3>Preparing for Tapered</h3>
 						<p>Extract calculation of branch tips into new function</p>
 						<pre><code data-trim>
 branches :: TreeNode -> (TreeNode, [TreeNode])
@@ -364,7 +360,7 @@ branchTips (p, v) = [(p', br a), (p', br (-a))]
 					</section>
 
 					<section>
-						<h3>Stick Figure—Preparing for Tapered</h3>
+						<h3>Preparing for Tapered</h3>
 						<p>Add explicit width</p>
 						<pre><code data-trim>
 type TreeNode = (P2, R2, Double)
@@ -456,11 +452,11 @@ branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
 
 				<section>
 					<section>
-						<h3>Tapered Branches—Preparing for 3D</h3>
+						<h3>Preparing for 3D—Overview</h3>
 						<p>Refactor the code (no change to behavior!)</p>
 						<ol>
 							<li>Import 3D libraries</li>
-							<li>Change seed to unitZ from unitY</li>
+							<li>Change seed to <i>unitZ</i> from <i>unitY</i></li>
 							<li>Add functions to project point and branch node</li>
 							<li>Apply rotation in 3D instead of 2D</li>
 							<li>Update comments to reflect new types</li>
@@ -468,8 +464,8 @@ branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
 					</section>
 					
 					<section>
-						<h3>Tapered Branches—Preparing for 3D</h3>
-						<p>Import 3D libraries and change seed to unitZ</p>
+						<h3>Preparing for 3D</h3>
+						<p>Import 3D libraries and change seed to <i>unitZ</i></p>
 						<pre><code data-trim>
 import Diagrams.ThreeD.Transform(aboutY)
 import Diagrams.ThreeD.Types(unp3)
@@ -484,7 +480,7 @@ seed = (origin, unitZ ^* tcScale tc, tcInitialWidth tc)
 					</section>
 
 					<section>
-						<h3>Tapered Branches—Preparing for 3D</h3>
+						<h3>Preparing for 3D</h3>
 						<p>Add functions to project point and branch node</p>
 						<pre><code data-trim>
 renderTree = mconcat . flatten . fmap drawBranch . fmap projectNode
@@ -506,7 +502,7 @@ projectPtXZ p = case unp3 p of (x, _, z) -> p2 (x, z)
 					</section>
 
 					<section>
-						<h3>Tapered Branches—Preparing for 3D</h3>
+						<h3>Preparing for 3D</h3>
 						<p>Apply rotation in 3D instead of 2D</p>
 						<pre><code data-trim>
 br a = v # scale (tcBranchScale tc) # t a
@@ -519,7 +515,7 @@ t a  = transform (aboutY (a @@ turn))
 					</section>
 
 					<section>
-						<h3>Tapered Branches—Preparing for 3D</h3>
+						<h3>Preparing for 3D</h3>
 						<p>Update comments to reflect new types</p>
 						<pre><code data-trim>
 --type TreeNode3 = (P3, R3, Double)
@@ -541,9 +537,9 @@ t a  = transform (aboutY (a @@ turn))
 						<ol>
 							<li>Import needed library functions</li>
 							<li>Tune cut off length</li>
-							<li>Rewrite branchTips</li>
-							<li>Add inject and mkTip functions</li>
-							<li>Add pointAt'' function</li>
+							<li>Rewrite <i>branchTips</i></li>
+							<li>Add <i>inject</i> and <i>mkTip</i> functions</li>
+							<li>Add <i>pointAt''</i> function</li>
 						</ol>
 					</section>
 
@@ -568,7 +564,7 @@ tcCutOff       = 0.12 * s,
 
 					<section>
 						<h3>Deep 3D—The Code</h3>
-						<p>Rewrite branchTips</p>
+						<p>Rewrite <i>branchTips</i></p>
 						<pre><code data-trim>
 -- Build a regular polygon in the XY-plane and tilt it perpendicular
 -- to the vector it branches from. Orient the polygon to make the
@@ -594,7 +590,7 @@ branchTips n@(_, v, _) = polygon po
 
 					<section>
 						<h3>Deep 3D—The Code</h3>
-						<p>Add inject and mkTip functions</p>
+						<p>Add <i>inject</i> and <i>mkTip</i> functions</p>
 						<pre><code data-trim>
 --inject :: R2 -> R3
 inject v = case unr2 v of (x, y) -> r3 (x, y, 0)
@@ -610,7 +606,7 @@ mkTip (p, v, w) v' = (p .+^ v, v', taperWidth w)
 
 					<section>
 						<h3>Deep 3D—The Code</h3>
-						<p>Add pointAt'' function</p>
+						<p>Add <i>pointAt''</i> function</p>
 						<pre><code data-trim>
 -- Copied from http://projects.haskell.org/diagrams/haddock/src/
 -- Diagrams-ThreeD-Transform.html#pointAt
