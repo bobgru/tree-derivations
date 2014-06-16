@@ -214,7 +214,7 @@
 						<ol>
 							<li><i>(origin, unitY) :: TreeNode</i></li>
 							<li><i>unfoldTree f :: TreeNode → Tree TreeNode</i><br/>
-								&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → [TreeNode]</i></td>
+								&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → (TreeNode, [TreeNode])</i></td>
 							</li>
 							<li><i>fmap f :: Tree TreeNode → Tree (Diagram SVG R2)</i><br/>
 								&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → Diagram SVG R2</i></td>
@@ -247,7 +247,7 @@ buildTree        =  unfoldTree branches seed
 seed             :: TreeNode
 seed             =  (origin, unitY)
 
-branches         :: TreeNode -> [TreeNode]
+branches         :: TreeNode -> (TreeNode, [TreeNode])
 branches (p, v)  =  ((p, v), [(q, br (1/7)), (q, br (-1/7))])
     where q    = p .+^ v
           br a = v # scale 0.6 # rotateBy a
@@ -271,7 +271,7 @@ buildTree  = unfoldTree branches seed
 seed       :: TreeNode
 seed       = (origin, unitY)
 
-branches   :: TreeNode -> [TreeNode]
+branches   :: TreeNode -> (TreeNode, [TreeNode])
 branches   (p, v)
     | magnitude v < 0.05  =  ((p, v), [])
     | otherwise           =  ((p, v), pvs)
@@ -346,8 +346,7 @@ renderTree =  mconcat . flatten . fmap drawBranch
 					</h3>
 					<p style="text-align: left">
 						Assembling code from the previous slides, with a few changes—add <b>import</b> statements,
-						apply <i>pad</i> to the final diagram, remove unnecessary type
-						declarations:
+						apply <i>pad</i> to the final diagram, remove type declarations:
 					</p>
 					<pre><code data-trim>
 import Data.Tree(flatten, unfoldTree)
