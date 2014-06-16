@@ -211,48 +211,18 @@
 							</div>
 							Functions
 						</h3>
-						<table style="font-size: 90%">
-							<tbody>
-								<tr>
-									<td style="text-align:right"><i>TreeNode</i></td>
-									<td></td>
-									<td></td>
-									<td>(<i>origin</i>, <i>unitY</i>)</td>
-								</tr>
-								<tr>
-									<td style="text-align:right"><i>Tree TreeNode</i></td>
-									<td></td>
-									<td></td>
-									<td><i>unfoldTree f</i><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → [TreeNode]</i></td>
-								</tr>
-								<tr>
-									<td style="text-align:right"><i>Tree (Diagram SVG R2)</i></td>
-									<td></td>
-									<td></td>
-									<td><i>fmap f</i><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → Diagram SVG R2</i></td>
-								</tr>
-								<tr>
-									<td style="text-align:right"><i>[Diagram SVG R2]</i></td>
-									<td></td>
-									<td></td>
-									<td><i>flatten</i></td>
-								</tr>
-								<tr>
-									<td style="text-align:right"><i>Diagram SVG R2</i></td>
-									<td></td>
-									<td></td>
-									<td><i>mconcat</i></td>
-								</tr>
-								<tr>
-									<td style="text-align:right">SVG file</td>
-									<td></td>
-									<td></td>
-									<td><i>defaultMain</i></td>
-								</tr>
-							</tbody>
-						</table>
+						<ol>
+							<li><i>(origin, unitY) :: TreeNode</i></li>
+							<li><i>unfoldTree f :: TreeNode → Tree TreeNode</i><br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → [TreeNode]</i></td>
+							</li>
+							<li><i>fmap f :: Tree TreeNode → Tree (Diagram SVG R2)</i><br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → Diagram SVG R2</i></td>
+							</li>
+							<li><i>flatten :: Tree (Diagram SVG R2) → [Diagram SVG R2]</i></li>
+							<li><i>mconcat :: [Diagram SVG R2] → Diagram SVG R2</i></li>
+							<li><i>defaultMain :: IO ()</i> which writes an SVG file</li>
+						</ol>
 					</section>
 
 				</section>
@@ -402,60 +372,24 @@ branches   (p, v)
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Analysis—What of Haskell?
-						</h3>
-						<ul>
-							<li>The module system, Hackage, the Haskell Platform</li>
-							<li>Function definition, nested functions</li>
-							<li>Function application in 3 ways: <i>f x</i>, <i>f $ x</i>, <i>x # f</i></li>
-							<li>Point-free composition, higher-order functions, functors</li>
-							<li>Partial application, currying</li>
-							<li>Tuples, lists, pattern matching</li>
-							<li>Guards, the where clause, apostrophe in names</li>
-							<li>Custom operators—(<i>.+^</i>) from Data.AffineSpace</li>
-							<li>Type inference, type classes and instances</li>
-							<li>The <i>IO</i> monad, lazy evaluation</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Analysis—What Not?
-						</h3>
-						<ul>
-							<li>Explicit data structures</li>
-							<li>Explicit type declarations</li>
-							<li>Explicit recursion</li>
-							<li>Infinite data structures</li>
-							<li>Sequence, loops, and conditionals (!)</li>
-							<li>Comments and whitespace (not much)</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Analysis—Further Comments
-						</h3>
-						<ul>
-							<li>Declarative specification</li>
-							<li>Dense code—6 functions, 5 one-liners</li>
-							<li>Almost-infinite tree (?)</li>
-							<li>Control flow structures as code</li>
-							<li>Layout mostly to suit taste</li>
-							<li>Type inference as convenience</li>
-						</ul>
-					</section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Casual Analysis
+					</h3>
+					<ul>
+						<li>Declarative—no loops, conditionals, or sequence</li>
+						<li>Concise—6 functions, 5 one-liners, 4 without arguments</li>
+						<li>Self-documenting—no comments necessary</li>
+						<li>Type inference worked—type declarations helped during development but
+							were ultimately unnecessary</li>
+						<li>Function application in 3 ways: <i>f x</i>, <i>f $ x</i>, <i>x # f</i></li>
+						<li>No explicit data structures other than the value of <i>seed</i></li>
+						<li>No explicit recursion—embedded in <i>unfoldTree</i></li>
+						<li>All pure code besides <i>defaultMain</i></li>
+						<li>Close brush with an infinite tree</li>
+					</ul>
 				</section>
 				
 				<section>
