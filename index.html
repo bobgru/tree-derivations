@@ -566,48 +566,47 @@ branchTips (p, v, w) = [(p', br a, w), (p', br (-a), w)]
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Tapered Branches—The Code
-						</h3>
-						<ol>
-							<li>Increase the initial width and add taper</li>
-							<li>If minimum width, draw line; otherwise, draw trapezoid.</li>
-							<li>Apply the taper, enforcing a minimum width</li>
-						</ol>
-					</section>
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Tapered Branches—The Code
-						</h3>
-						<p>Increase the initial width and add taper</p>
-						<pre><code data-trim>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Tapered Branches—The Code
+					</h3>
+					<ol>
+						<li>Increase the initial width and add taper</li>
+						<li>If minimum width, draw line; otherwise, draw trapezoid.</li>
+						<li>Apply the taper, enforcing a minimum width</li>
+					</ol>
+				</section>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Tapered Branches—The Code
+					</h3>
+					<p>Increase the initial width and add taper</p>
+					<pre><code data-trim>
 tcWidthTaper   :: Double
-						</code></pre>
-						<pre><code data-trim>
+					</code></pre>
+					<pre><code data-trim>
 tcInitialWidth = 0.1  * s
 tcWidthTaper   = 0.7
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
-						</p>
-					</section>
-				
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Tapered Branches—The Code
-						</h3>
-						<p>If minimum width, draw line; otherwise, draw trapezoid.</p>
-						<pre><code data-trim>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
+					</p>
+				</section>
+			
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Tapered Branches—The Code
+					</h3>
+					<p>If minimum width, draw line; otherwise, draw trapezoid.</p>
+					<pre><code data-trim>
 drawBranch n@(p, v, w) = place d p
     where d | w <= tcMinWidth tc  =  lineSegment v w
             | otherwise           =  trapezoid n
@@ -620,86 +619,84 @@ trapezoid (p, v, w) = (closeLine . lineFromVertices) [ p, a, b, c, d ]
           w2 = w  / 2 ; w2' = w' / 2
           a  = p  .-^ (w2  *^ n) ; b = p' .-^ (w2' *^ n)
           c  = p' .+^ (w2' *^ n) ; d = p  .+^ (w2  *^ n)
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
-						</p>
-					</section>
-
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Tapered Branches—The Code
-						</h3>
-						<p>Apply the taper, enforcing a minimum width</p>
-						<pre><code data-trim>
-taperWidth :: Double -> Double
-taperWidth w = max (w * tcWidthTaper tc) (tcMinWidth tc)
-						</code></pre>
-						<pre><code data-trim>
-branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
-          ...
-          w'   = taperWidth w
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
+					</p>
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for 3D—Overview
-						</h3>
-						<p>Refactor the code (no change to behavior!)</p>
-						<ol>
-							<li>Import 3D libraries</li>
-							<li>Change seed to <i>unitZ</i> from <i>unitY</i>—<br/>the tree is now in the <i>X-Z</i> plane</li>
-							<li>Add functions to project point and branch node</li>
-							<li>Apply rotation in 3D instead of 2D</li>
-							<li>Update comments to reflect new types</li>
-						</ol>
-					</section>
-					
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for 3D
-						</h3>
-						<p>Import 3D libraries and change seed to <i>unitZ</i></p>
-						<pre><code data-trim>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Tapered Branches—The Code
+					</h3>
+					<p>Apply the taper, enforcing a minimum width</p>
+					<pre><code data-trim>
+taperWidth :: Double -> Double
+taperWidth w = max (w * tcWidthTaper tc) (tcMinWidth tc)
+					</code></pre>
+					<pre><code data-trim>
+branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
+          ...
+          w'   = taperWidth w
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for 3D—Overview
+					</h3>
+					<p>Refactor the code (no change to behavior!)</p>
+					<ol>
+						<li>Import 3D libraries</li>
+						<li>Change seed to <i>unitZ</i> from <i>unitY</i>—<br/>the tree is now in the <i>X-Z</i> plane</li>
+						<li>Add functions to project point and branch node</li>
+						<li>Apply rotation in 3D instead of 2D</li>
+						<li>Update comments to reflect new types</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for 3D
+					</h3>
+					<p>Import 3D libraries and change seed to <i>unitZ</i></p>
+					<pre><code data-trim>
 import Diagrams.ThreeD.Transform(aboutY)
 import Diagrams.ThreeD.Types(unp3)
 import Diagrams.ThreeD.Vector(unitZ)
-						</code></pre>
-						<pre><code data-trim>
+					</code></pre>
+					<pre><code data-trim>
 seed = (origin, unitZ ^* tcScale tc, tcInitialWidth tc)
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for 3D
-						</h3>
-						<p>Add functions to project point and branch node</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for 3D
+					</h3>
+					<p>Add functions to project point and branch node</p>
+					<pre><code data-trim>
 renderTree = mconcat . flatten . fmap drawBranch . fmap projectNode
-						</code></pre>
-						<pre><code data-trim>
+					</code></pre>
+					<pre><code data-trim>
 --projectNode :: TreeNode3 -> TreeNode
 projectNode (p, v, w) = (p', v', w)
     where q  = p .+^ v
@@ -709,102 +706,100 @@ projectNode (p, v, w) = (p', v', w)
 
 --projectPtXZ :: P3 -> P2
 projectPtXZ p = case unp3 p of (x, _, z) -> p2 (x, z)
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for 3D
-						</h3>
-						<p>Apply rotation in 3D instead of 2D</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for 3D
+					</h3>
+					<p>Apply rotation in 3D instead of 2D</p>
+					<pre><code data-trim>
 br a = v # scale (tcBranchScale tc) # t a
 ...
 t a  = transform (aboutY (a @@ turn))
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for 3D
-						</h3>
-						<p>Update comments to reflect new types</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/tapered.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for 3D
+					</h3>
+					<p>Update comments to reflect new types</p>
+					<pre><code data-trim>
 --type TreeNode3 = (P3, R3, Double)
 --renderTree :: Tree TreeNode3 -> Dgm
 --buildTree  :: Tree TreeNode3
 --seed       :: TreeNode3
 --branches   :: TreeNode3 -> (TreeNode3, [TreeNode3])
 --branchTips :: TreeNode3 -> [TreeNode3]
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered1.hs">src/Tapered1.hs</a></small>
+					</p>
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Deep 3D—The Code
-						</h3>
-						<ol>
-							<li>Import needed library functions</li>
-							<li>Tune cut off length</li>
-							<li>Rewrite <i>branchTips</i></li>
-							<li>Add <i>inject</i> and <i>mkTip</i> functions</li>
-							<li>Add <i>pointAt''</i> function</li>
-						</ol>
-					</section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Deep 3D—The Code
+					</h3>
+					<ol>
+						<li>Import needed library functions</li>
+						<li>Tune cut off length</li>
+						<li>Rewrite <i>branchTips</i></li>
+						<li>Add <i>inject</i> and <i>mkTip</i> functions</li>
+						<li>Add <i>pointAt''</i> function</li>
+					</ol>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Deep 3D—The Code
-						</h3>
-						<p>Import needed library functions and tune cut off</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Deep 3D—The Code
+					</h3>
+					<p>Import needed library functions and tune cut off</p>
+					<pre><code data-trim>
 import Data.Cross(cross3)
 ...
 import Diagrams.Prelude hiding (rotationAbout, direction, angleBetween)
 import Diagrams.ThreeD.Transform(aboutY, pointAt', rotationAbout)
 import Diagrams.ThreeD.Types(unp3, R3, r3, T3, Spherical)
 import Diagrams.ThreeD.Vector(unitZ, direction, angleBetween)
-						</code></pre>
-						<pre><code data-trim>
+					</code></pre>
+					<pre><code data-trim>
 tcCutOff       = 0.12 * s
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Deep 3D—The Code
-						</h3>
-						<p>Rewrite <i>branchTips</i></p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Deep 3D—The Code
+					</h3>
+					<p>Rewrite <i>branchTips</i></p>
+					<pre><code data-trim>
 -- Build a regular polygon in the XY-plane and tilt it perpendicular
 -- to the vector it branches from. Orient the polygon to make the
 -- projection more interesting.
@@ -821,42 +816,42 @@ branchTips n@(_, v, _) = polygon po
           s  = 0.782        -- length of side
           v' = r2 (1,3)     -- orientation vector
           h  = 0.623        -- "height" of tips above base
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Deep 3D—The Code
-						</h3>
-						<p>Add <i>inject</i> and <i>mkTip</i> functions</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Deep 3D—The Code
+					</h3>
+					<p>Add <i>inject</i> and <i>mkTip</i> functions</p>
+					<pre><code data-trim>
 --inject :: R2 -> R3
 inject v = case unr2 v of (x, y) -> r3 (x, y, 0)
-						</code></pre>
-						<pre><code data-trim>
+					</code></pre>
+					<pre><code data-trim>
 --mkTip :: TreeNode3 -> R3 -> TreeNode3
 mkTip (p, v, w) v' = (p .+^ v, v', taperWidth w)
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Deep 3D—The Code
-						</h3>
-						<p>Add <i>pointAt''</i> function</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Deep 3D—The Code
+					</h3>
+					<p>Add <i>pointAt''</i> function</p>
+					<pre><code data-trim>
 -- Copied from http://projects.haskell.org/diagrams/haddock/src/
 -- Diagrams-ThreeD-Transform.html#pointAt
 -- and modified to change the calculation of tilt angle.
@@ -869,30 +864,28 @@ pointAt'' about initial final = tilt
         tiltAngle = angleBetween initial final
         tiltDir   = direction $ cross3 about final :: Spherical
         tilt      = rotationAbout origin tiltDir tiltAngle
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+					</p>
 				</section>
 
 				<section>
-					<section>
-						<h3>A Note on Type Inference</h3>
-						<p>According to my hint (Tapered0.hs)</p>
-						<pre><code data-trim>
+					<h3>A Note on Type Inference</h3>
+					<p>According to my hint (Tapered0.hs)</p>
+					<pre><code data-trim>
 --branchTips :: TreeNode -> [TreeNode]
-						</code></pre>
-						<p>According to my hint (Deep3D.hs)</p>
-						<pre><code data-trim>
+					</code></pre>
+					<p>According to my hint (Deep3D.hs)</p>
+					<pre><code data-trim>
 --branchTips :: TreeNode3 -> [TreeNode3]
-						</code></pre>
-					</section>
+					</code></pre>
+				</section>
 
-					<section>
-						<h3>A Note on Type Inference</h3>
-						<p>According to GHCI (cabal repl tapered-0)</p>
-						<pre><code data-trim>
+				<section>
+					<h3>A Note on Type Inference</h3>
+					<p>According to GHCI (cabal repl tapered-0)</p>
+					<pre><code data-trim>
 tree-derivations$ cabal repl tapered-0
 ...
 Ok, modules loaded: Main.
@@ -906,13 +899,13 @@ branchTips
       ~ Diagrams.TwoD.Types.R2) =>
      (t, vector-space-0.8.6:Data.AffineSpace.Diff t, Double)
      -> [(t, vector-space-0.8.6:Data.AffineSpace.Diff t, Double)]
-						</code></pre>
-					</section>
+					</code></pre>
+				</section>
 
-					<section>
-						<h3>A Note on Type Inference</h3>
-						<p>According to GHCI (cabal repl deep-3d)</p>
-						<pre><code data-trim>
+				<section>
+					<h3>A Note on Type Inference</h3>
+					<p>According to GHCI (cabal repl deep-3d)</p>
+					<pre><code data-trim>
 tree-derivations$ cabal repl deep-3d
 ...
 Ok, modules loaded: Main.
@@ -922,9 +915,7 @@ branchTips
       Data.AffineSpace.Diff t ~ Diagrams.ThreeD.Types.R3) =>
      (t, Diagrams.ThreeD.Types.R3, Double)
      -> [(t, Diagrams.ThreeD.Types.R3, Double)]
-						</code></pre>
-
-					</section>
+					</code></pre>
 				</section>
 
 				<!-- <section id="themes">
