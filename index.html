@@ -56,9 +56,9 @@
 					<h3>Purpose</h3>
 					<p>Give an introductory talk at Boston Haskell that:</p>
 					<ul>
-						<li>Uses the <strong>diagrams</strong> package</li>
-						<li>Uses standard containers and functions</li>
 						<li>Shows a Haskell style of problem solving</li>
+						<li>Uses standard containers and functions</li>
+						<li>Uses the <strong>diagrams</strong> package</li>
 					</ul>
 				</section>
 
@@ -88,14 +88,116 @@
 					<div style="position: absolute; left: 0; top: 0.2em">
 						<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
 					</div>
-					<h3>Standard Tree Container</h3>
+					<h3><span style="font-size: 95%">A Haskell Style of Development</span></h3>
 					<ul>
-						<li>cabal install <b>containers</b>
-						<li>import <b>Data.Tree</b>
-						<li>We will use the following:
+						<li>Examine the problem details</li>
+						<li>Determine the input and output data types</li>
+						<li>Determine a sequence of intervening types</li>
+						<li>Determine the functions to accomplish each transformation</li>
+						<li>Stitch them together</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Problem Details
+					</h3>
+					<table>
+						<tr>
+							<td><img src="images/tree-node.svg"></td>
+							<td></td>
+							<td></td>
+							<td style="vertical-align: middle">
+								<p>Given:</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>,
+									fixed <i>R</i>, fixed <i style="font-family: serif">&#x3B8;</i>
+									</p>
+								<br/>
+								<p>Then:</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-family: serif">q</i> = <i style="font-family: serif">p</i> displaced by <b style="font-family: serif">v</b><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-family: serif">w</b><span style="position: relative; bottom: -0.5em; font-family: serif; font-size: 65%"><i>l</i></span> = <b style="font-family: serif">v</b> scaled by <i>R</i>,
+									rotated by <i style="font-family: serif">&#x3B8;</i><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-family: serif">w</b><span style="position: relative; bottom: -0.5em; font-family: serif; font-size: 65%"><i>r</i></span> = <b style="font-family: serif">v</b> scaled by <i>R</i>,
+									rotated by <i style="font-family: serif">-&#x3B8;</i><br/>
+									</p>
+									<br/>
+								<p>So:</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;(<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>)  ⟼ 
+									{ (<i style="font-family: serif">q</i>, <b style="font-family: serif">w</b><span style="position: relative; bottom: -0.5em; font-family: serif; font-size: 65%"><i>l</i></span>),
+									  (<i style="font-family: serif">q</i>, <b style="font-family: serif">w</b><span style="position: relative; bottom: -0.5em; font-family: serif; font-size: 65%"><i>r</i></span>)
+									}
+									</p>
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						<span style="font-size: 85%">Input and Output Types—Thoughts</span>
+					</h3>
+					<ul>
+						<li>Our input will be the initial values of (<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>);<br/>
+							namely, a point and a vector.</li>
+						<li>Our output is a file in some image format.</li>
+						<li>To determine the input and output types,<br/>
+							we must know something of the libraries<br/>
+							we plan to use.</li>
+					</ul>
+				</section>
+
+				<section>
+					<div style="position: absolute; left: 0; top: 0.2em">
+						<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+					</div>
+					<h3>The Diagrams Package</h3>
+					<ul>
+						<li>Has types for 2D points and vectors: <i>P2</i> and <i>R2</i></li>
+						<li>Supports numerous output formats, including SVG</li>
+						<li>Has type <i>Diagram SVG R2</i> for working with 2D diagrams <br/> 
+							&nbsp;&nbsp;&nbsp;&nbsp; that will be output in SVG format</li>
+						<li>Has functions for creating diagrams from points and vectors<br/>
+							and for composing them from lists (e.g. <i>fromOffsets</i>, <i>mconcat</i>)</li>
+					</ul>
+					<p></p>
+					<small><a href="http://projects.haskell.org/diagrams">http://projects.haskell.org/diagrams</a></small>
+				</section>
+
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						<span style="font-size: 85%">Input and Output Types—Decided</span>
+					</h3>
+					<ul>
+						<li>Our input type is (<i>P2</i>, <i>R2</i>)</li>
+						<li>Our output type is <i>Diagram SVG R2</i>,<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;ultimately output as an SVG file</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						<span style="font-size: 78%">Intervening Type Sequence—Thoughts</span>
+					</h3>
+					<ul>
+						<li>We will probably need some sort of <i>Tree</i> type.</li>
+						<li>The <b>containers</b> package on Hackage
 							<ul>
-								<li><i>Tree</i> type</li>
-								<li><i>unfoldTree</i> and <i>flatten</i> functions</li>
+								<li>contains <i>Tree a</i>, where <i>a</i> represents the type of the<br/> data in a node—(<i>P2</i>,<i>R2</i>).</li>
+								<li>has a function for creating a tree (<i>unfoldTree</i>)</li>
+								<li>has a function for altering the contents of a tree (<i>fmap</i>)</li>
+								<li>has a function for converting a tree to a list (<i>flatten</i>)</li>
 							</ul>
 						</li>
 					</ul>
@@ -103,130 +205,58 @@
 				</section>
 
 				<section>
-					<div style="position: absolute; left: 0; top: 0.2em">
-						<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-					</div>
-					<h3>Diagrams</h3>
-					<ul>
-						<li>cabal install <b>diagrams</b> (takes about 5 minutes)</li>
-						<li>Rich, fascinating, addictive, highly factored, rigorous</li>
-						<li>We will only use a small set of concepts and features:
-							<ul>
-								<li>import <b>Diagrams.Prelude</b></li>
-								<li>import <b>Diagrams.Backend.SVG.CmdLine</b></li>
-								<li>Points (<i>P2</i>, <i>origin</i>)</li>
-								<li>Vectors (<i>R2</i>, <i>unitY</i>, <i>magnitude</i>)</li>
-								<li>Diagrams (<i>Diagram SVG R2</i>, <i>fromOffsets</i>,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;<i>scale</i>, <i>rotateBy</i>, <i>place</i>, <i>pad</i>)</li>
-								<li>Command line (<i>defaultMain</i>)</li>
-								<li>Etc. (<i>mconcat</i>, <i>.+^</i>, <i>#</i>)</li>
-							</ul>
-						</li>
-					</ul>
-					<small><a href="http://projects.haskell.org/diagrams">http://projects.haskell.org/diagrams</a></small>
-				</section>
-				
-				<section>
-					<section>
+					<h3>
 						<div style="position: absolute; left: 0; top: 0.2em">
 							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
 						</div>
-						<h3>Haskell Style of Development</h3>
-						<ul>
-							<li>Examine the problem details</li>
-							<li>Determine the input and output data types</li>
-							<li>Determine a sequence of intervening types</li>
-							<li>Determine the functions to accomplish each transformation</li>
-							<li>Stitch them together</li>
-						</ul>
-					</section>
+						<span style="font-size: 75%">Intervening Type Sequence—Suggestion</span>
+					</h3>
+					<p style="text-align: left">The following is one possible sequence of types, informed by
+						knowledge of what the <b>containers</b> and <b>diagrams</b> packages offer:</p>
+					<ol>
+						<li><i>TreeNode = (<i>P2</i>,<i>R2</i>)</i></li>
+						<li><i>Tree TreeNode</i></li>
+						<li><i>Tree (Diagram SVG R2)</i></li>
+						<li><i>[Diagram SVG R2]</i></li>
+						<li><i>Diagram SVG R2</i></li>
+						<li>SVG file</li>
+					</ol>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Haskell Style—Problem Details
-						</h3>
-						<table>
-							<tr>
-								<td><img src="images/tree-node.svg"></td>
-								<td></td>
-								<td></td>
-								<td style="vertical-align: middle">
-									<p>Given:</p>
-									<p>&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>, <i>R</i>, <i style="font-family: serif">&#x3B8;</i></p>
-									<br/>
-									<p>Then:</p>
-									<p>&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-family: serif">q</i> = <i style="font-family: serif">p</i> displaced by <b style="font-family: serif">v</b><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-family: serif">w</b><span style="position: relative; bottom: -0.5em; font-family: serif; font-size: 65%"><i>l</i></span> = <b style="font-family: serif">v</b> scaled by <i>R</i><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and rotated by <i style="font-family: serif">&#x3B8;</i><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-family: serif">w</b><span style="position: relative; bottom: -0.5em; font-family: serif; font-size: 65%"><i>r</i></span> = <b style="font-family: serif">v</b> scaled by <i>R</i><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and rotated by <i style="font-family: serif">-&#x3B8;</i><br/>
-										</p>
-								</td>
-							</tr>
-						</table>
-					</section>
-
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Haskell Style—Input<br/> and Output Types
-						</h3>
-						<ul>
-							<li>Our tree has fixed <i style="font-family: serif">&#x3B8;</i> and <i>R</i>, leaving
-								(<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>) as the data in a node,
-								for an input type of <i>TreeNode = (P2, R2)</i>.
-							</li>
-							<li>Our output type is an SVG file.</li>
-						</ul>
-					</section>
-
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Haskell Style—Intervening<br/>Type Sequence
-						</h3>
-						<p style="text-align: left">The following is one possible sequence of types, informed by
-							knowledge of what the <b>containers</b> and <b>diagrams</b> packages offer:</p>
-						<ol>
-							<li><i>TreeNode</i></li>
-							<li><i>Tree TreeNode</i></li>
-							<li><i>Tree (Diagram SVG R2)</i></li>
-							<li><i>[Diagram SVG R2]</i></li>
-							<li><i>Diagram SVG R2</i></li>
-							<li>SVG file</li>
-						</ol>
-					</section>
-
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Haskell Style—Functions
-						</h3>
-						<ol>
-							<li><i>(origin, unitY) :: TreeNode</i></li>
-							<li><i>unfoldTree f :: TreeNode → Tree TreeNode</i><br/>
-								&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → (TreeNode, [TreeNode])</i></td>
-							</li>
-							<li><i>fmap f :: Tree TreeNode → Tree (Diagram SVG R2)</i><br/>
-								&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → Diagram SVG R2</i></td>
-							</li>
-							<li><i>flatten :: Tree (Diagram SVG R2) → [Diagram SVG R2]</i></li>
-							<li><i>mconcat :: [Diagram SVG R2] → Diagram SVG R2</i></li>
-							<li><i>defaultMain :: IO ()</i> which writes an SVG file</li>
-						</ol>
-					</section>
-
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Functions
+					</h3>
+					<p style="text-align: left">Now we choose a function to accomplish each type transformation.
+						The <i>origin</i> and <i>unitY</i> functions return a distinguished <i>P2</i> and <i>R2</i>, respectively.</p>
+					<ol>
+						<li><i>(origin, unitY) :: TreeNode</i></li>
+						<li><i>unfoldTree f :: TreeNode → Tree TreeNode</i><br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → (TreeNode, [TreeNode])</i></td>
+						</li>
+						<li><i>fmap f :: Tree TreeNode → Tree (Diagram SVG R2)</i><br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;<b>where</b> <i>f :: TreeNode → Diagram SVG R2</i></td>
+						</li>
+						<li><i>flatten :: Tree (Diagram SVG R2) → [Diagram SVG R2]</i></li>
+						<li><i>mconcat :: [Diagram SVG R2] → Diagram SVG R2</i></li>
+						<li><i>defaultMain :: IO ()</i> which writes an SVG file</li>
+					</ol>
 				</section>
 				
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Final Assembly
+					</h3>
+					<p style="text-align: left">We have all the information needed to write the program, except
+						for the two helper functions to <i>unfoldTree</i> and <i>fmap</i>.</p>
+				</section>
+
 				<section>
 					<section>
 						<h3>
@@ -384,7 +414,7 @@ branches   (p, v)
 						<li>Type inference worked—type declarations helped during development but
 							were ultimately unnecessary</li>
 						<li>Function application in 3 ways: <i>f x</i>, <i>f $ x</i>, <i>x # f</i></li>
-						<li>No explicit data structures other than the value of <i>seed</i></li>
+						<li>No explicit data structures other than lists and pairs</li>
 						<li>No explicit recursion—embedded in <i>unfoldTree</i></li>
 						<li>All pure code besides <i>defaultMain</i></li>
 						<li>Close brush with an infinite tree</li>
@@ -392,32 +422,31 @@ branches   (p, v)
 				</section>
 				
 				<section>
-					<section>
+				<h3>
+					<div style="position: absolute; left: 0; top: 0.2em">
+						<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+					</div>
+					<span style="font-size: 85%">Preparing for Tapered—Overview</span>
+				</h3>
+				<p>Refactor the code (no change to behavior!)</p>
+				<ol>
+					<li>Add module name and type declarations</li>
+					<li>Extract constants into configuration data structure</li>
+					<li>Extract calculation of branch tips into new function</li>
+					<li>Add explicit width</li>
+					<li>Add white space and reformat slightly</li>
+				</ol>
+				</section>
+
+				<section>
 					<h3>
 						<div style="position: absolute; left: 0; top: 0.2em">
 							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
 						</div>
-						Preparing for Tapered—<br/>Overview
+						Preparing for Tapered
 					</h3>
-					<p>Refactor the code (no change to behavior!)</p>
-					<ol>
-						<li>Add module name and type declarations</li>
-						<li>Extract constants into configuration data structure</li>
-						<li>Extract calculation of branch tips into new function</li>
-						<li>Add explicit width</li>
-						<li>Add white space and reformat slightly</li>
-					</ol>
-					</section>
-
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for Tapered
-						</h3>
-						<p>Add module name and type declarations</p>
-						<pre><code data-trim>
+					<p>Add module name and type declarations</p>
+					<pre><code data-trim>
 module Main where
 import Data.Tree(Tree, flatten, unfoldTree)
 import Diagrams.Backend.SVG.CmdLine(defaultMain)
@@ -426,21 +455,21 @@ import Diagrams.Prelude
 
 type TreeNode = (P2, R2)
 type Dgm = Diagram SVG R2
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for Tapered
-						</h3>
-						<p>Define configuration data structure</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for Tapered
+					</h3>
+					<p>Define configuration data structure</p>
+					<pre><code data-trim>
 data TreeConfig = TC {
     tcScale        :: Double,
     tcCutOff       :: Double,
@@ -449,21 +478,21 @@ data TreeConfig = TC {
     tcBranchScale  :: Double,
     tcBranchAngle  :: Double
 } deriving (Show)
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for Tapered
-						</h3>
-						<p>Extract constants into configuration data structure</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for Tapered
+					</h3>
+					<p>Extract constants into configuration data structure</p>
+					<pre><code data-trim>
 tc :: TreeConfig
 tc = TC {
     tcScale        = s,
@@ -474,21 +503,21 @@ tc = TC {
     tcBranchAngle  = 1/7
 }
     where s = 10000
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for Tapered
-						</h3>
-						<p>Extract calculation of branch tips into new function</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for Tapered
+					</h3>
+					<p>Extract calculation of branch tips into new function</p>
+					<pre><code data-trim>
 branches :: TreeNode -> (TreeNode, [TreeNode])
 branches n@(_, v)
     | magnitude v < tcCutOff tc  =  (n, [])
@@ -499,30 +528,30 @@ branchTips (p, v) = [(p', br a), (p', br (-a))]
     where p'   = p .+^ v
           br a = v # scale (tcBranchScale tc) # rotateBy a
           a    = tcBranchAngle tc
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+					</p>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							Preparing for Tapered
-						</h3>
-						<p>Add explicit width</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Preparing for Tapered
+					</h3>
+					<p>Add explicit width</p>
+					<pre><code data-trim>
 type TreeNode = (P2, R2, Double)
-						</code></pre>
-						<pre><code data-trim>
-tcInitialWidth :: Double,
-						</code></pre>
-						<pre><code data-trim>
-tcInitialWidth = 0.01 * s,
-						</code></pre>
-						<pre><code data-trim>
+					</code></pre>
+					<pre><code data-trim>
+tcInitialWidth :: Double
+					</code></pre>
+					<pre><code data-trim>
+tcInitialWidth = 0.01 * s
+					</code></pre>
+					<pre><code data-trim>
 seed = (origin, unitY ^* tcScale tc, tcInitialWidth tc)
 drawBranch (p, v, w) = place (fromOffsets [v]) p # lw w
 	...
@@ -530,11 +559,10 @@ branches n@(_, v, _)
 	...
 branchTips (p, v, w) = [(p', br a, w), (p', br (-a), w)]
 	...
-						</code></pre>
-						<p>
-							<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
-						</p>
-					</section>
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/StickFigure3.hs">src/StickFigure3.hs</a></small>
+					</p>
 				</section>
 
 				<section>
@@ -560,11 +588,11 @@ branchTips (p, v, w) = [(p', br a, w), (p', br (-a), w)]
 						</h3>
 						<p>Increase the initial width and add taper</p>
 						<pre><code data-trim>
-tcWidthTaper   :: Double,
+tcWidthTaper   :: Double
 						</code></pre>
 						<pre><code data-trim>
-tcInitialWidth = 0.1  * s,
-tcWidthTaper   = 0.7,
+tcInitialWidth = 0.1  * s
+tcWidthTaper   = 0.7
 						</code></pre>
 						<p>
 							<small><a href="http://github.com/bobgru/tree-derivations/src/Tapered0.hs">src/Tapered0.hs</a></small>
@@ -632,7 +660,7 @@ branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
 						<p>Refactor the code (no change to behavior!)</p>
 						<ol>
 							<li>Import 3D libraries</li>
-							<li>Change seed to <i>unitZ</i> from <i>unitY</i></li>
+							<li>Change seed to <i>unitZ</i> from <i>unitY</i>—<br/>the tree is now in the <i>X-Z</i> plane</li>
 							<li>Add functions to project point and branch node</li>
 							<li>Apply rotation in 3D instead of 2D</li>
 							<li>Update comments to reflect new types</li>
@@ -761,7 +789,7 @@ import Diagrams.ThreeD.Types(unp3, R3, r3, T3, Spherical)
 import Diagrams.ThreeD.Vector(unitZ, direction, angleBetween)
 						</code></pre>
 						<pre><code data-trim>
-tcCutOff       = 0.12 * s,
+tcCutOff       = 0.12 * s
 						</code></pre>
 						<p>
 							<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
