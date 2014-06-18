@@ -112,8 +112,8 @@
 							<td></td>
 							<td style="vertical-align: middle">
 								<p>Given:</p>
-								<p>&nbsp;&nbsp;&nbsp;&nbsp;<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>,
-									fixed <i>R</i>, fixed <i style="font-family: serif">&#x3B8;</i>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;point <i style="font-family: serif">p</i>, vector <b style="font-family: serif">v</b>,<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;fixed scalar <i>R</i>, fixed angle <i style="font-family: serif">&#x3B8;</i>
 									</p>
 								<br/>
 								<p>Then:</p>
@@ -143,8 +143,7 @@
 						<span style="font-size: 85%">Input and Output Types—Thoughts</span>
 					</h3>
 					<ul>
-						<li>Our input will be the initial values of (<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>);<br/>
-							namely, a point and a vector.</li>
+						<li>Our input will be the initial values of (<i style="font-family: serif">p</i>, <b style="font-family: serif">v</b>).</li>
 						<li>Our output is a file in some image format.</li>
 						<li>To determine the input and output types,<br/>
 							we must know something of the libraries<br/>
@@ -165,8 +164,7 @@
 						<li>Has functions for creating diagrams from points and vectors<br/>
 							and for composing them from lists (e.g. <i>fromOffsets</i>, <i>mconcat</i>)</li>
 					</ul>
-					<p></p>
-					<small><a href="http://projects.haskell.org/diagrams">http://projects.haskell.org/diagrams</a></small>
+					<!-- <small><a href="http://projects.haskell.org/diagrams">http://projects.haskell.org/diagrams</a></small> -->
 				</section>
 
 				<section>
@@ -201,7 +199,6 @@
 							</ul>
 						</li>
 					</ul>
-					<small><a href="http://hackage.haskell.org/package/containers-0.5.5.1">http://hackage.haskell.org/package/containers-0.5.5.1</a></small>
 				</section>
 
 				<section>
@@ -258,19 +255,18 @@
 				</section>
 
 				<section>
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							<i>TreeNode → Tree TreeNode</i>
-						</h3>
-						<p style="text-align: left">
-							<i>unfoldTree</i> invokes the <i>branches</i> function
-							recursively starting from <i>seed</i> to produce a tree.
-							Note that this process never ends—<i>buildTree</i> produces an <b>infinite</b> tree!
-						</p>
-						<pre><code data-trim>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						<i>TreeNode → Tree TreeNode</i>
+					</h3>
+					<p style="text-align: left">
+						<i>unfoldTree</i> invokes the <i>branches</i> function
+						recursively starting from <i>seed</i> to produce a tree.
+						Note that this process never ends—<i>buildTree</i> produces an <b>infinite</b> tree!
+					</p>
+					<pre><code data-trim>
 buildTree        :: Tree TreeNode
 buildTree        =  unfoldTree branches seed
 
@@ -281,20 +277,20 @@ branches         :: TreeNode -> (TreeNode, [TreeNode])
 branches (p, v)  =  ((p, v), [(q, br (1/7)), (q, br (-1/7))])
     where q    = p .+^ v
           br a = v # scale 0.6 # rotateBy a
-						</code></pre>
-					</section>
+					</code></pre>
+				</section>
 
-					<section>
-						<h3>
-							<div style="position: absolute; left: 0; top: 0.2em">
-								<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-							</div>
-							<i style="font-size: 88%">TreeNode → Tree TreeNode—Finitely</i>
-						</h3>
-						<p>
-							<i>branches</i> decides based on segment length when to stop.
-						</p>
-						<pre><code data-trim>
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/stick-figure.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						<i style="font-size: 88%">TreeNode → Tree TreeNode—Finitely</i>
+					</h3>
+					<p>
+						<i>branches</i> decides based on segment length when to stop.
+					</p>
+					<pre><code data-trim>
 buildTree  :: Tree TreeNode
 buildTree  = unfoldTree branches seed
 
@@ -308,8 +304,7 @@ branches   (p, v)
     where pvs  = [(q, br (1/7)), (q, br (-1/7))]
           q    = p .+^ v
           br a = v # scale 0.6 # rotateBy a
-						</code></pre>
-					</section>
+					</code></pre>
 				</section>
 				
 				<section>
@@ -524,8 +519,8 @@ branches n@(_, v)
     | otherwise                  =  (n, branchTips n)
 
 branchTips :: TreeNode -> [TreeNode]
-branchTips (p, v) = [(p', br a), (p', br (-a))]
-    where p'   = p .+^ v
+branchTips (p, v) = [(q, br a), (q, br (-a))]
+    where q    = p .+^ v
           br a = v # scale (tcBranchScale tc) # rotateBy a
           a    = tcBranchAngle tc
 					</code></pre>
@@ -557,7 +552,7 @@ drawBranch (p, v, w) = place (fromOffsets [v]) p # lw w
 	...
 branches n@(_, v, _)
 	...
-branchTips (p, v, w) = [(p', br a, w), (p', br (-a), w)]
+branchTips (p, v, w) = [(q, br a, w), (q, br (-a), w)]
 	...
 					</code></pre>
 					<p>
@@ -638,7 +633,7 @@ taperWidth :: Double -> Double
 taperWidth w = max (w * tcWidthTaper tc) (tcMinWidth tc)
 					</code></pre>
 					<pre><code data-trim>
-branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
+branchTips (p, v, w) = [(q, br a, w'), (q, br (-a), w')]
           ...
           w'   = taperWidth w
 					</code></pre>

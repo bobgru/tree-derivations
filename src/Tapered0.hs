@@ -68,8 +68,8 @@ branches n@(_, v, _)
     | otherwise                  =  (n, branchTips n)
 
 --branchTips :: TreeNode -> [TreeNode]
-branchTips (p, v, w) = [(p', br a, w'), (p', br (-a), w')]
-    where p'   = p .+^ v
+branchTips (p, v, w) = [(q, br a, w'), (q, br (-a), w')]
+    where q    = p .+^ v
           br a = v # scale (tcBranchScale tc) # rotateBy a
           a    = tcBranchAngle tc
           w'   = taperWidth w

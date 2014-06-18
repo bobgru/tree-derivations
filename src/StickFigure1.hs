@@ -26,6 +26,6 @@ branches :: TreeNode -> (TreeNode, [TreeNode])
 branches   (p, v)
     | magnitude v < 0.05  =  ((p, v), [])
     | otherwise           =  ((p, v), pvs)
-    where pvs  = [(p', br (1/7)), (p', br (-1/7))]
-          p'   = p .+^ v
+    where pvs  = [(q, br (1/7)), (q, br (-1/7))]
+          q    = p .+^ v
           br a = v # scale 0.6 # rotateBy a
