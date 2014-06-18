@@ -73,6 +73,15 @@ executable deep-3d
   hs-source-dirs:      src
   default-language:    Haskell2010
 
+executable infinite-tree
+  main-is:             InfiniteTree.hs
+  build-depends:       base >=4.6 && <4.7
+                     , containers
+                     , diagrams-lib >= 1.1 && < 1.2
+                     , diagrams-svg >= 1.0 && < 1.1
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
 executable l-system-0
   main-is:             LSystem0.hs
   build-depends:       base >=4.6 && <4.7

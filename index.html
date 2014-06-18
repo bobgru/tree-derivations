@@ -93,7 +93,7 @@
 						<li>Examine the problem details</li>
 						<li>Determine the input and output data types</li>
 						<li>Determine a sequence of intervening types</li>
-						<li>Determine the functions to accomplish each transformation</li>
+						<li>Choose functions for each transformation</li>
 						<li>Stitch them together</li>
 					</ul>
 				</section>
@@ -178,7 +178,7 @@
 						<li>Has types for 2D points and vectors: <i>P2</i> and <i>R2</i></li>
 						<li>Supports numerous output formats, including SVG</li>
 						<li>Has type <i>Diagram SVG R2</i> for working with 2D diagrams <br/> 
-							&nbsp;&nbsp;&nbsp;&nbsp; that will be output in SVG format</li>
+							that will be output in SVG format</li>
 						<li>Has functions for creating diagrams from points and vectors<br/>
 							and for composing them from lists (e.g. <i>fromOffsets</i>, <i>mconcat</i>)</li>
 					</ul>
@@ -195,7 +195,7 @@
 					<ul>
 						<li>Our input type is (<i>P2</i>, <i>R2</i>)</li>
 						<li>Our output type is <i>Diagram SVG R2</i>,<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;ultimately output as an SVG file</li>
+							ultimately output as an SVG file</li>
 					</ul>
 				</section>
 
@@ -210,7 +210,7 @@
 						<li>We will probably need some sort of <i>Tree</i> type.</li>
 						<li>The <b>containers</b> package on Hackage
 							<ul>
-								<li>contains <i>Tree a</i>, where <i>a</i> represents the type of the<br/> data in a node—(<i>P2</i>,<i>R2</i>).</li>
+								<li>contains <i>Tree a</i>, where <i>a</i> represents the type of the<br/> data in a node—(<i>P2</i>, <i>R2</i>).</li>
 								<li>has a function for creating a tree (<i>unfoldTree</i>)</li>
 								<li>has a function for altering the contents of a tree (<i>fmap</i>)</li>
 								<li>has a function for converting a tree to a list (<i>flatten</i>)</li>
@@ -229,7 +229,7 @@
 					<p style="text-align: left">The following is one possible sequence of types, informed by
 						knowledge of what the <b>containers</b> and <b>diagrams</b> packages offer:</p>
 					<ol>
-						<li><i>TreeNode = (<i>P2</i>,<i>R2</i>)</i></li>
+						<li><i>TreeNode = (<i>P2</i>, <i>R2</i>)</i></li>
 						<li><i>Tree TreeNode</i></li>
 						<li><i>Tree (Diagram SVG R2)</i></li>
 						<li><i>[Diagram SVG R2]</i></li>
@@ -772,36 +772,12 @@ t a  = transform (aboutY (a @@ turn))
 						Deep 3D—The Code
 					</h3>
 					<ol>
-						<li>Import needed library functions</li>
-						<li>Tune cut off length</li>
-						<li>Rewrite <i>branchTips</i></li>
+						<li>Rewrite <i>branchTips</i> to create child<br/>nodes off the <i>X-Z</i> plane</li>
 						<li>Add <i>inject</i> and <i>mkTip</i> functions</li>
 						<li>Add <i>pointAt''</i> function</li>
+						<li>Import needed library functions</li>
+						<li>Tune cut off length</li>
 					</ol>
-				</section>
-
-				<section>
-					<h3>
-						<div style="position: absolute; left: 0; top: 0.2em">
-							<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
-						</div>
-						Deep 3D—The Code
-					</h3>
-					<p>Import needed library functions and tune cut off</p>
-					<pre><code data-trim>
-import Data.Cross(cross3)
-...
-import Diagrams.Prelude hiding (rotationAbout, direction, angleBetween)
-import Diagrams.ThreeD.Transform(aboutY, pointAt', rotationAbout)
-import Diagrams.ThreeD.Types(unp3, R3, r3, T3, Spherical)
-import Diagrams.ThreeD.Vector(unitZ, direction, angleBetween)
-					</code></pre>
-					<pre><code data-trim>
-tcCutOff       = 0.12 * s
-					</code></pre>
-					<p>
-						<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
-					</p>
 				</section>
 
 				<section>
@@ -877,6 +853,30 @@ pointAt'' about initial final = tilt
         tiltAngle = angleBetween initial final
         tiltDir   = direction $ cross3 about final :: Spherical
         tilt      = rotationAbout origin tiltDir tiltAngle
+					</code></pre>
+					<p>
+						<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h3>
+						<div style="position: absolute; left: 0; top: 0.2em">
+							<img src="images/deep-3d-2.svg" height=60 style="margin: 0px 0px; border: 2px solid black">
+						</div>
+						Deep 3D—The Code
+					</h3>
+					<p>Import needed library functions and tune cut off</p>
+					<pre><code data-trim>
+import Data.Cross(cross3)
+...
+import Diagrams.Prelude hiding (rotationAbout, direction, angleBetween)
+import Diagrams.ThreeD.Transform(aboutY, pointAt', rotationAbout)
+import Diagrams.ThreeD.Types(unp3, R3, r3, T3, Spherical)
+import Diagrams.ThreeD.Vector(unitZ, direction, angleBetween)
+					</code></pre>
+					<pre><code data-trim>
+tcCutOff       = 0.12 * s
 					</code></pre>
 					<p>
 						<small><a href="http://github.com/bobgru/tree-derivations/src/Deep3D.hs">src/Deep3D.hs</a></small>
