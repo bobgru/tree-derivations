@@ -82,113 +82,113 @@ executable infinite-tree
   hs-source-dirs:      src
   default-language:    Haskell2010
 
-executable l-system-0
-  main-is:             LSystem0.hs
-  build-depends:       base >=4.6 && <4.7
-                     , aeson
-                     , attoparsec
-                     , bytestring
-                     , containers
-                     , diagrams-lib >= 1.1 && < 1.2
-                     , diagrams-svg >= 1.0 && < 1.1
-                     , scientific
-                     , syb
-                     , text
-                     , unordered-containers
-                     , vector
-                     , vector-space
-  hs-source-dirs:      src
-  default-language:    Haskell2010
-
-executable l-system-1
-  main-is:             LSystem1.hs
-  build-depends:       base >=4.6 && <4.7
-                     , aeson
-                     , attoparsec
-                     , bytestring
-                     , containers
-                     , diagrams-lib >= 1.1 && < 1.2
-                     , diagrams-svg >= 1.0 && < 1.1
-                     , scientific
-                     , syb
-                     , text
-                     , unordered-containers
-                     , vector
-                     , vector-space
-  hs-source-dirs:      src
-  default-language:    Haskell2010
-
-executable l-system-2
-  main-is:             LSystem2.hs
-  build-depends:       base >=4.6 && <4.7
-                     , aeson
-                     , attoparsec
-                     , bytestring
-                     , containers
-                     , diagrams-lib >= 1.1 && < 1.2
-                     , diagrams-svg >= 1.0 && < 1.1
-                     , scientific
-                     , syb
-                     , text
-                     , unordered-containers
-                     , vector
-                     , vector-space
-  hs-source-dirs:      src
-  default-language:    Haskell2010
-
-executable l-system-3
-  main-is:             LSystem3.hs
-  build-depends:       base >=4.6 && <4.7
-                     , aeson
-                     , attoparsec
-                     , bytestring
-                     , containers
-                     , diagrams-lib >= 1.1 && < 1.2
-                     , diagrams-svg >= 1.0 && < 1.1
-                     , scientific
-                     , syb
-                     , text
-                     , unordered-containers
-                     , vector
-                     , vector-space
-  hs-source-dirs:      src
-  default-language:    Haskell2010
-
-executable l-system-4
-  main-is:             LSystem4.hs
-  build-depends:       base >=4.6 && <4.7
-                     , aeson
-                     , attoparsec
-                     , bytestring
-                     , containers
-                     , diagrams-lib >= 1.1 && < 1.2
-                     , diagrams-svg >= 1.0 && < 1.1
-                     , scientific
-                     , syb
-                     , text
-                     , unordered-containers
-                     , vector
-                     , vector-space
-  hs-source-dirs:      src
-  default-language:    Haskell2010
-
-executable l-system-5
-  main-is:             LSystem5.hs
-  build-depends:       base >=4.6 && <4.7
-                     , aeson
-                     , attoparsec
-                     , bytestring
-                     , containers
-                     , diagrams-lib >= 1.1 && < 1.2
-                     , diagrams-svg >= 1.0 && < 1.1
-                     , scientific
-                     , syb
-                     , text
-                     , unordered-containers
-                     , vector
-                     , vector-space
-  hs-source-dirs:      src
-  default-language:    Haskell2010
+-- executable l-system-0
+--   main-is:             LSystem0.hs
+--   build-depends:       base >=4.6 && <4.7
+--                      , aeson
+--                      , attoparsec
+--                      , bytestring
+--                      , containers
+--                      , diagrams-lib >= 1.1 && < 1.2
+--                      , diagrams-svg >= 1.0 && < 1.1
+--                      , scientific
+--                      , syb
+--                      , text
+--                      , unordered-containers
+--                      , vector
+--                      , vector-space
+--   hs-source-dirs:      src
+--   default-language:    Haskell2010
+-- 
+-- executable l-system-1
+--   main-is:             LSystem1.hs
+--   build-depends:       base >=4.6 && <4.7
+--                      , aeson
+--                      , attoparsec
+--                      , bytestring
+--                      , containers
+--                      , diagrams-lib >= 1.1 && < 1.2
+--                      , diagrams-svg >= 1.0 && < 1.1
+--                      , scientific
+--                      , syb
+--                      , text
+--                      , unordered-containers
+--                      , vector
+--                      , vector-space
+--   hs-source-dirs:      src
+--   default-language:    Haskell2010
+-- 
+-- executable l-system-2
+--   main-is:             LSystem2.hs
+--   build-depends:       base >=4.6 && <4.7
+--                      , aeson
+--                      , attoparsec
+--                      , bytestring
+--                      , containers
+--                      , diagrams-lib >= 1.1 && < 1.2
+--                      , diagrams-svg >= 1.0 && < 1.1
+--                      , scientific
+--                      , syb
+--                      , text
+--                      , unordered-containers
+--                      , vector
+--                      , vector-space
+--   hs-source-dirs:      src
+--   default-language:    Haskell2010
+-- 
+-- executable l-system-3
+--   main-is:             LSystem3.hs
+--   build-depends:       base >=4.6 && <4.7
+--                      , aeson
+--                      , attoparsec
+--                      , bytestring
+--                      , containers
+--                      , diagrams-lib >= 1.1 && < 1.2
+--                      , diagrams-svg >= 1.0 && < 1.1
+--                      , scientific
+--                      , syb
+--                      , text
+--                      , unordered-containers
+--                      , vector
+--                      , vector-space
+--   hs-source-dirs:      src
+--   default-language:    Haskell2010
+-- 
+-- executable l-system-4
+--   main-is:             LSystem4.hs
+--   build-depends:       base >=4.6 && <4.7
+--                      , aeson
+--                      , attoparsec
+--                      , bytestring
+--                      , containers
+--                      , diagrams-lib >= 1.1 && < 1.2
+--                      , diagrams-svg >= 1.0 && < 1.1
+--                      , scientific
+--                      , syb
+--                      , text
+--                      , unordered-containers
+--                      , vector
+--                      , vector-space
+--   hs-source-dirs:      src
+--   default-language:    Haskell2010
+-- 
+-- executable l-system-5
+--   main-is:             LSystem5.hs
+--   build-depends:       base >=4.6 && <4.7
+--                      , aeson
+--                      , attoparsec
+--                      , bytestring
+--                      , containers
+--                      , diagrams-lib >= 1.1 && < 1.2
+--                      , diagrams-svg >= 1.0 && < 1.1
+--                      , scientific
+--                      , syb
+--                      , text
+--                      , unordered-containers
+--                      , vector
+--                      , vector-space
+--   hs-source-dirs:      src
+--   default-language:    Haskell2010
 
 executable tree-node-diagram
   main-is:             TreeNodeDiagram.hs
