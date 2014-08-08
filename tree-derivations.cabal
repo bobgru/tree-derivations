@@ -11,7 +11,7 @@ cabal-version:       >=1.10
 
 executable stick-figure-0
   main-is:             StickFigure0.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -20,7 +20,7 @@ executable stick-figure-0
 
 executable stick-figure-1
   main-is:             StickFigure1.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -29,7 +29,7 @@ executable stick-figure-1
 
 executable stick-figure-2
   main-is:             StickFigure2.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -38,7 +38,7 @@ executable stick-figure-2
 
 executable stick-figure-3
   main-is:             StickFigure3.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -47,7 +47,7 @@ executable stick-figure-3
 
 executable tapered-0
   main-is:             Tapered0.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -56,7 +56,7 @@ executable tapered-0
 
 executable tapered-1
   main-is:             Tapered1.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -65,7 +65,7 @@ executable tapered-1
 
 executable deep-3d
   main-is:             Deep3D.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -75,7 +75,7 @@ executable deep-3d
 
 executable infinite-tree
   main-is:             InfiniteTree.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , containers
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
@@ -84,7 +84,7 @@ executable infinite-tree
 
 -- executable l-system-0
 --   main-is:             LSystem0.hs
---   build-depends:       base >=4.6 && <4.7
+--   build-depends:       base >=4.6 && <4.8
 --                      , aeson
 --                      , attoparsec
 --                      , bytestring
@@ -102,7 +102,7 @@ executable infinite-tree
 -- 
 -- executable l-system-1
 --   main-is:             LSystem1.hs
---   build-depends:       base >=4.6 && <4.7
+--   build-depends:       base >=4.6 && <4.8
 --                      , aeson
 --                      , attoparsec
 --                      , bytestring
@@ -120,7 +120,7 @@ executable infinite-tree
 -- 
 -- executable l-system-2
 --   main-is:             LSystem2.hs
---   build-depends:       base >=4.6 && <4.7
+--   build-depends:       base >=4.6 && <4.8
 --                      , aeson
 --                      , attoparsec
 --                      , bytestring
@@ -138,7 +138,7 @@ executable infinite-tree
 -- 
 -- executable l-system-3
 --   main-is:             LSystem3.hs
---   build-depends:       base >=4.6 && <4.7
+--   build-depends:       base >=4.6 && <4.8
 --                      , aeson
 --                      , attoparsec
 --                      , bytestring
@@ -156,7 +156,7 @@ executable infinite-tree
 -- 
 -- executable l-system-4
 --   main-is:             LSystem4.hs
---   build-depends:       base >=4.6 && <4.7
+--   build-depends:       base >=4.6 && <4.8
 --                      , aeson
 --                      , attoparsec
 --                      , bytestring
@@ -174,7 +174,7 @@ executable infinite-tree
 -- 
 -- executable l-system-5
 --   main-is:             LSystem5.hs
---   build-depends:       base >=4.6 && <4.7
+--   build-depends:       base >=4.6 && <4.8
 --                      , aeson
 --                      , attoparsec
 --                      , bytestring
@@ -192,7 +192,7 @@ executable infinite-tree
 
 executable tree-node-diagram
   main-is:             TreeNodeDiagram.hs
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base >=4.6 && <4.8
                      , diagrams-lib >= 1.1 && < 1.2
                      , diagrams-svg >= 1.0 && < 1.1
   hs-source-dirs:      src
