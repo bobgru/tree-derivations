@@ -1,4 +1,4 @@
-#Tree Derivations#
+# Tree Derivations
 
 This is an introductory-level example of Haskell programming
 using the `diagrams` package to make pictures of fractal-like trees. It
